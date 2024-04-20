@@ -1,17 +1,13 @@
 import * as THREE from "/src/js/three.js";
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 300);
 const renderer = new THREE.WebGLRenderer({
     canvas: document.querySelector('canvas'),
 });
 
 let t = 0
 let dt = 0
-
-renderer.setPixelRatio(window.innerWidth / window.innerHeight);
-renderer.setSize(window.innerWidth, window.innerHeight);
-camera.position.setZ(30);
 
 function createStars(amount, fieldSize) {
     let geometry = new THREE.SphereGeometry(0.25, 4, 4);
@@ -26,12 +22,6 @@ function createStars(amount, fieldSize) {
     }
 }
 
-function mainloop() {
-    requestAnimationFrame(mainloop);
-
-
-    renderer.render(scene, camera);
-}
 
 function scrollbarRestorer() {
     if (history.scrollRestoration) {
@@ -45,9 +35,16 @@ function scrollbarRestorer() {
     }
 }
 
+
+function mainloop() {
+    requestAnimationFrame(mainloop);
+
+
+    renderer.render(scene, camera);
+}
+
 function onscroll() {
     t = document.body.getBoundingClientRect().top;
-    dt = t / 10;
     console.log(t);
 
     camera.position.z = t * -0.01;
@@ -55,13 +52,23 @@ function onscroll() {
 
 function onload() {
     mainloop()
-    createStars(1000, 100)
+
+    createStars(10000, 500)
 
     scrollbarRestorer()
 
     onscroll()
+    onresize()
+}
+
+function onresize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
 
 document.body.onscroll = onscroll
 document.body.onload = onload;
+document.body.onresize = onresize;
