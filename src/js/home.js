@@ -9,7 +9,9 @@ const renderer = new THREE.WebGLRenderer({
 
 let ticking = false;
 
+// scroll progress
 let t = 0
+
 
 function createStars(amount, fieldSize) {
     let geometry = new THREE.SphereGeometry(0.25, 4, 4);
@@ -37,28 +39,50 @@ function scrollbarRestorer() {
     }
 }
 
+function lerp(start, end, amount) {
+    return start * (1 - amount) + end * amount;
+}
+
+function invLerp(start, end, amount) {
+    return (amount - start) / (end - start)
+}
+
 function threeScroll(min, max, func) {
-    if (min == "start" && max == "end") {
-        func();
+    if (min == "start") {
+        min = 0;
     }
 
-    else if (min == "start") {
-        if (t < max) {
-            func();
-        }
+    if (max == "end") {
+        max = Math.max(document.body.scrollHeight, 
+            document.body.offsetHeight, 
+            document.documentElement.clientHeight, 
+            document.documentElement.scrollHeight, 
+            document.documentElement.offsetHeight
+        );
     }
 
-    else if (max == "end") {
-        if (t > min) {
-            func();
-        }
+    let s = {
+        from: min,
+        to: max,
+        prog: invLerp(min, max, t)
     }
 
-    else if (t > min && t < max) {
-        func()
+    if (t > min && t < max) {
+        func(s)
     }
 }
 
+function tweenScroll(s, from, to, currentVal, func, time = 1500, easing = TWEEN.Easing.Exponential.Out) {
+    let dest = lerp(from, to, s.prog);
+
+    new TWEEN.Tween({val: currentVal})
+    .to({val: dest}, time)
+    .easing(easing)
+    .onUpdate((e) => {
+        func(e);
+    })
+    .start()
+}
 
 function mainloop() {
     requestAnimationFrame(mainloop);
@@ -70,18 +94,17 @@ function mainloop() {
 function onscroll() {
     t = document.body.getBoundingClientRect().top * -1;
 
-    threeScroll("start", "end", () => {
-        let toZ = t * 0.05;
-
-        let tween = new TWEEN.Tween({z: camera.position.z})
-        .to({z: toZ}, 2000)
-        .easing(TWEEN.Easing.Exponential.Out)
-        .onUpdate((e) => {
-            camera.position.z = e.z;
-        })
-        .start()
+    threeScroll("start", 1000, (s) => {
+        tweenScroll(s, 0, 200, camera.position.z, e => camera.position.z = e.val)
     })
 
+    threeScroll(1000, 2000, (s) => {
+        tweenScroll(s, 0, Math.PI, camera.rotation.y, e => camera.rotation.y = e.val)
+    })
+
+    threeScroll(2000, "end", (s) => {
+        tweenScroll(s, 200, 0, camera.position.z, e => camera.position.z = e.val)
+    })
 }
 
 function onload() {
