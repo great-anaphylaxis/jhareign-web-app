@@ -1,4 +1,5 @@
 import * as THREE from "/src/js/three.js";
+import * as TWEEN from "/src/js/tween.js"
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 300);
@@ -6,8 +7,9 @@ const renderer = new THREE.WebGLRenderer({
     canvas: document.querySelector('canvas'),
 });
 
+let ticking = false;
+
 let t = 0
-let dt = 0
 
 function createStars(amount, fieldSize) {
     let geometry = new THREE.SphereGeometry(0.25, 4, 4);
@@ -35,19 +37,51 @@ function scrollbarRestorer() {
     }
 }
 
+function threeScroll(min, max, func) {
+    if (min == "start" && max == "end") {
+        func();
+    }
+
+    else if (min == "start") {
+        if (t < max) {
+            func();
+        }
+    }
+
+    else if (max == "end") {
+        if (t > min) {
+            func();
+        }
+    }
+
+    else if (t > min && t < max) {
+        func()
+    }
+}
+
 
 function mainloop() {
     requestAnimationFrame(mainloop);
 
-
-    renderer.render(scene, camera);
+    TWEEN.update();
+    renderer.render(scene, camera); 
 }
 
 function onscroll() {
-    t = document.body.getBoundingClientRect().top;
-    console.log(t);
+    t = document.body.getBoundingClientRect().top * -1;
 
-    camera.position.z = t * -0.01;
+    threeScroll("start", "end", () => {
+        let toZ = t * 0.05;
+
+        let tween = new TWEEN.Tween({z: camera.position.z})
+        .to({z: toZ}, 2000)
+        .easing(TWEEN.Easing.Exponential.Out)
+        .onUpdate((e) => {
+            camera.position.z = e.z;
+        })
+        .start()
+    })
+
 }
 
 function onload() {
@@ -69,6 +103,16 @@ function onresize() {
 }
 
 
-document.body.onscroll = onscroll
+document.addEventListener("scroll", (e) => {
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            onscroll();
+            ticking = false;
+        });
+  
+        ticking = true;
+    }
+});
+
 document.body.onload = onload;
 document.body.onresize = onresize;
