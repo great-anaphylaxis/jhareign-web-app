@@ -87,13 +87,22 @@ function scrollbarRestorer() {
 
 
 // functions for use
-function createStars(amount, fieldSize) {
+function createStars(amount, fieldSize, bound) {
     let geometry = new THREE.SphereGeometry(0.25, 4, 4);
     let material = new THREE.MeshBasicMaterial({color: "white"});
 
     for (let i = 0; i < amount; i++) {
-        let star = new THREE.Mesh(geometry, material);
         let [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(fieldSize))
+
+        if (
+            x < bound && x > -bound &&
+            y < bound && y > -bound &&
+            z < bound && z > -bound
+        ) {
+            continue;
+        }
+
+        let star = new THREE.Mesh(geometry, material);
 
         star.position.set(x, y, z);
         scene.add(star);
@@ -193,7 +202,7 @@ function onload() {
     mainloop()
 
     createLights()
-    createStars(10000, 500)
+    createStars(10000, 500, 100)
     loadSceneModel()
 
     scrollbarRestorer()
