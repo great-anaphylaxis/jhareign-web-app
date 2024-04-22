@@ -3,6 +3,8 @@ import * as THREE from "/src/js/lib/three.js";
 import * as TWEEN from "/src/js/lib/tween.js";
 import { GLTFLoader } from "/src/js/lib/gltf_loader.js";
 import { OrbitControls } from "/src/js/lib/orbit_controls.js";
+import { FontLoader } from "/src/js/lib/font_loader.js";
+import { TextGeometry } from "/src/js/lib/text_geometry.js"
 
 // Three.js essentials
 const scene = new THREE.Scene();
@@ -18,6 +20,9 @@ let ticking = false;
 
 // scroll progress
 let t = 0
+
+// text object on the monitor
+let monitorText;
 
 // essential utility functions
 function lerp(start, end, amount) {
@@ -144,6 +149,30 @@ function initCameraPosition() {
     camera.rotation.z = 0;
 }
 
+function createMonitorText(text) {
+    if (monitorText != undefined) {
+        monitorText.remove();
+    }
+
+    let loader = new FontLoader();
+
+    loader.load("/src/fonts/consolas.json", font => {
+        let geometry = new TextGeometry("C:\\Jhareign>", {
+            font: font,
+            size: 0.5,
+            depth: 0.05
+        })
+        let material = new THREE.MeshBasicMaterial({color: "rgb(0, 255, 0)"});
+
+        monitorText = new THREE.Mesh(geometry, material);
+
+        monitorText.position.x = 15;
+        monitorText.position.y = 42;
+        monitorText.position.z = -3.6;
+        scene.add(monitorText)
+    })
+}
+
 
 
 // event functions
@@ -179,13 +208,23 @@ function onscroll() {
         tweenScroll(s, 0, 0, camera.rotation.z, e => camera.rotation.z = e.val)
     })
 
-    // threeScroll(1000, 2000, (s) => {
-    //     tweenScroll(s, 0, Math.PI, camera.rotation.y, e => camera.rotation.y = e.val)
-    // })
+    threeScroll(1000, 2000, (s) => {
+        tweenScroll(s, 22, 15, camera.position.z, e => camera.position.z = e.val)
+    })
 
-    // threeScroll(2000, "end", (s) => {
-    //     tweenScroll(s, 200, 0, camera.position.z, e => camera.position.z = e.val)
-    // })
+    threeScroll(2000, 3000, (s) => {
+        tweenScroll(s, 25, -32, camera.position.x, e => camera.position.x = e.val)
+        tweenScroll(s, 38, 47, camera.position.y, e => camera.position.y = e.val)
+        tweenScroll(s, 15, -50, camera.position.z, e => camera.position.z = e.val)
+        tweenScroll(s, 0, 0, camera.rotation.x, e => camera.rotation.x = e.val)
+        tweenScroll(s, 0, -2.8, camera.rotation.y, e => camera.rotation.y = e.val)
+        tweenScroll(s, 0, 0, camera.rotation.z, e => camera.rotation.z = e.val)
+    })
+
+    threeScroll(3000, 4000, (s) => {
+        tweenScroll(s, -32, 15, camera.position.x, e => camera.position.x = e.val)
+        tweenScroll(s, -50, 30, camera.position.z, e => camera.position.z = e.val)
+    })
 }
 
 function mainloop() {
@@ -204,6 +243,7 @@ function onload() {
     createLights()
     createStars(10000, 500, 100)
     loadSceneModel()
+    createMonitorText()
 
     scrollbarRestorer()
 
