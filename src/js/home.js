@@ -225,6 +225,19 @@ function onscroll() {
         tweenScroll(s, -32, 15, camera.position.x, e => camera.position.x = e.val)
         tweenScroll(s, -50, 30, camera.position.z, e => camera.position.z = e.val)
     })
+
+    threeScroll(4000, 5000, (s) => {
+        tweenScroll(s, 15, 21, camera.position.x, e => camera.position.x = e.val)
+        tweenScroll(s, 47, 38, camera.position.y, e => camera.position.y = e.val)
+        tweenScroll(s, 30, 22, camera.position.z, e => camera.position.z = e.val)
+        tweenScroll(s, 0, 0, camera.rotation.x, e => camera.rotation.x = e.val)
+        tweenScroll(s, -2.8, 0, camera.rotation.y, e => camera.rotation.y = e.val)
+        tweenScroll(s, 0, 0, camera.rotation.z, e => camera.rotation.z = e.val)
+    })
+
+    threeScroll(5000, 6000, (s) => {
+        tweenScroll(s, 22, 15, camera.position.z, e => camera.position.z = e.val)
+    })
 }
 
 function mainloop() {
@@ -234,7 +247,7 @@ function mainloop() {
     //controls.update();
     renderer.render(scene, camera);
 
-    console.log(camera.position)
+    //console.log(camera.position)
 }
 
 function onload() {
