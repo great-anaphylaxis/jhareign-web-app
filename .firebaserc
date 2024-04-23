@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "jhareign-web-app"
-  }
+  },
+  "targets": {
+    "jhareign-web-app": {
+      "hosting": {
+        "jhareign": [
+          "jhareign"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
