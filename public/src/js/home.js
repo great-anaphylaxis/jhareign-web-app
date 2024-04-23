@@ -21,9 +21,10 @@ let ticking = false;
 // scroll progress
 let t = 0
 
-// text object on the monitor
-let monitorText;
-let consoleTextLabel = "initial";
+// monitor canvas
+let monitor;
+let monitorMaterial;
+let monitorContentTag;
 
 // essential utility functions
 function lerp(start, end, amount) {
@@ -150,30 +151,59 @@ function initCameraPosition() {
     camera.rotation.z = 0;
 }
 
-function createMonitorText(text, textLabel) {
-    if (monitorText != undefined) {
-        monitorText.remove();
-    }
+function createMonitorCanvas() {
+    let canvas = document.createElement('canvas');
+    canvas.width = 500;
+    canvas.height = 500;
 
-    consoleTextLabel = textLabel;
+    monitor = canvas.getContext('2d');
+    monitor.imageSmoothingEnabled = false;
+    
+    monitor.fillStyle = 'black';
+    monitor.fillRect(0, 0, canvas.width, canvas.height);
 
-    let loader = new FontLoader();
+    monitor.font = '25px monospace';
+    monitor.fillStyle = 'rgb(0, 255, 0)';
+    monitor.textBaseline = "top"
 
-    loader.load("/src/fonts/consolas.json", font => {
-        let geometry = new TextGeometry(text, {
-            font: font,
-            size: 0.5,
-            depth: 0.05
-        })
-        let material = new THREE.MeshBasicMaterial({color: "rgb(0, 255, 0)"});
+    return canvas;
+}
 
-        monitorText = new THREE.Mesh(geometry, material);
+function createMonitorScreen() {
+    let canvas = createMonitorCanvas();
+    let geometry = new THREE.PlaneGeometry(1, 1);
+    let texture = new THREE.CanvasTexture(canvas)
 
-        monitorText.position.x = 15;
-        monitorText.position.y = 42;
-        monitorText.position.z = -3.6;
-        scene.add(monitorText)
+    monitorMaterial = new THREE.MeshBasicMaterial({
+        map: texture
     })
+
+    let screen = new THREE.Mesh(geometry, monitorMaterial);
+
+    screen.position.x = 22.3;
+    screen.position.y = 37.5;
+    screen.position.z = -3.3;
+    screen.scale.x = 16.6;
+    screen.scale.y = 12.2;
+    screen.rotation.x = -0.08;
+
+    scene.add(screen);
+}
+
+function changeMonitorText(text, contentTag) {
+    monitor.fillStyle = 'black';
+    monitor.fillRect(0, 0, monitor.canvas.width, monitor.canvas.height);
+
+    monitor.font = '20px monospace';
+    monitor.fillStyle = 'rgb(0, 255, 0)';
+    monitor.textBaseline = "top";
+
+    let arrtext = text.split('\n');
+    for (let i = 0; i < arrtext.length; i++) {
+        monitor.fillText(arrtext[i], 10, 15 + (i * 20))
+    }
+    monitorMaterial.map.needsUpdate = true;
+    monitorContentTag = contentTag
 }
 
 
@@ -230,7 +260,16 @@ function onscroll() {
     })
 
     threeScroll(4000, 5000, (s) => {
-        if (consoleTextLabel != "programming")
+        if (monitorContentTag != "programming") {
+            changeMonitorText(
+                "C:\\Jhareign>git add .\n" + 
+                "C:\\Jhareign>git commit -m Final commit\n" +
+                "final commit of website\n" +
+                "3 files changed", "48 insertions(+), 3 deletions(-)", "programming")
+
+                
+        }
+
         tweenScroll(s, 15, 21, camera.position.x, e => camera.position.x = e.val)
         tweenScroll(s, 47, 38, camera.position.y, e => camera.position.y = e.val)
         tweenScroll(s, 30, 22, camera.position.z, e => camera.position.z = e.val)
@@ -260,7 +299,8 @@ function onload() {
     createLights()
     createStars(10000, 500, 100)
     loadSceneModel()
-    createMonitorText("C:\\Jhareign>", "initial")
+    createMonitorScreen()
+    changeMonitorText("C:\\Jhareign>webapp run", "initial")
 
     scrollbarRestorer()
 
