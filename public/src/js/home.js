@@ -23,6 +23,7 @@ let t = 0
 
 // text object on the monitor
 let monitorText;
+let consoleTextLabel = "initial";
 
 // essential utility functions
 function lerp(start, end, amount) {
@@ -149,15 +150,17 @@ function initCameraPosition() {
     camera.rotation.z = 0;
 }
 
-function createMonitorText(text) {
+function createMonitorText(text, textLabel) {
     if (monitorText != undefined) {
         monitorText.remove();
     }
 
+    consoleTextLabel = textLabel;
+
     let loader = new FontLoader();
 
     loader.load("/src/fonts/consolas.json", font => {
-        let geometry = new TextGeometry("C:\\Jhareign>", {
+        let geometry = new TextGeometry(text, {
             font: font,
             size: 0.5,
             depth: 0.05
@@ -227,6 +230,7 @@ function onscroll() {
     })
 
     threeScroll(4000, 5000, (s) => {
+        if (consoleTextLabel != "programming")
         tweenScroll(s, 15, 21, camera.position.x, e => camera.position.x = e.val)
         tweenScroll(s, 47, 38, camera.position.y, e => camera.position.y = e.val)
         tweenScroll(s, 30, 22, camera.position.z, e => camera.position.z = e.val)
@@ -256,7 +260,7 @@ function onload() {
     createLights()
     createStars(10000, 500, 100)
     loadSceneModel()
-    createMonitorText()
+    createMonitorText("C:\\Jhareign>", "initial")
 
     scrollbarRestorer()
 
