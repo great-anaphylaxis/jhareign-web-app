@@ -3,8 +3,6 @@ import * as THREE from "/src/js/lib/three.js";
 import * as TWEEN from "/src/js/lib/tween.js";
 import { GLTFLoader } from "/src/js/lib/gltf_loader.js";
 import { OrbitControls } from "/src/js/lib/orbit_controls.js";
-import { FontLoader } from "/src/js/lib/font_loader.js";
-import { TextGeometry } from "/src/js/lib/text_geometry.js"
 
 // Three.js essentials
 const scene = new THREE.Scene();
@@ -232,7 +230,7 @@ function onresize() {
 function onscroll() {
     t = document.body.getBoundingClientRect().top * -1;
 
-    threeScroll("start", 1000, (s) => {
+    threeScroll("start", 1500, (s) => {
         tweenScroll(s, -56, 25, camera.position.x, e => camera.position.x = e.val)
         tweenScroll(s, 53, 38, camera.position.y, e => camera.position.y = e.val)
         tweenScroll(s, 52, 22, camera.position.z, e => camera.position.z = e.val)
@@ -241,11 +239,15 @@ function onscroll() {
         tweenScroll(s, 0, 0, camera.rotation.z, e => camera.rotation.z = e.val)
     })
 
-    threeScroll(1000, 2000, (s) => {
+    threeScroll(1500, 3000, (s) => {
+        if (monitorContentTag != "initial") {
+            changeMonitorText("C:\\Jhareign>webapp run", "initial")
+        }
+
         tweenScroll(s, 22, 15, camera.position.z, e => camera.position.z = e.val)
     })
 
-    threeScroll(2000, 3000, (s) => {
+    threeScroll(3000, 4500, (s) => {
         tweenScroll(s, 25, -32, camera.position.x, e => camera.position.x = e.val)
         tweenScroll(s, 38, 47, camera.position.y, e => camera.position.y = e.val)
         tweenScroll(s, 15, -50, camera.position.z, e => camera.position.z = e.val)
@@ -254,20 +256,15 @@ function onscroll() {
         tweenScroll(s, 0, 0, camera.rotation.z, e => camera.rotation.z = e.val)
     })
 
-    threeScroll(3000, 4000, (s) => {
+    threeScroll(4500, 6000, (s) => {
         tweenScroll(s, -32, 15, camera.position.x, e => camera.position.x = e.val)
         tweenScroll(s, -50, 30, camera.position.z, e => camera.position.z = e.val)
     })
 
-    threeScroll(4000, 5000, (s) => {
-        if (monitorContentTag != "programming") {
+    threeScroll(6000, 7500, (s) => {
+        if (monitorContentTag != "programming1") {
             changeMonitorText(
-                "C:\\Jhareign>git add .\n" + 
-                "C:\\Jhareign>git commit -m Final commit\n" +
-                "final commit of website\n" +
-                "3 files changed", "48 insertions(+), 3 deletions(-)", "programming")
-
-                
+                "C:\\Jhareign>git add .", "programming1")
         }
 
         tweenScroll(s, 15, 21, camera.position.x, e => camera.position.x = e.val)
@@ -278,8 +275,59 @@ function onscroll() {
         tweenScroll(s, 0, 0, camera.rotation.z, e => camera.rotation.z = e.val)
     })
 
-    threeScroll(5000, 6000, (s) => {
+    threeScroll(7500, 8000, (s) => {
+        if (monitorContentTag != "programming2") {
+            changeMonitorText(
+                "C:\\Jhareign>git add .\n\n" + 
+                "C:\\Jhareign>git commit -m Final commit", "programming2")
+        }
+    })
+
+    threeScroll(8000, 8500, (s) => {
+        if (monitorContentTag != "programming3") {
+            changeMonitorText(
+                "C:\\Jhareign>git add .\n\n" + 
+                "C:\\Jhareign>git commit -m Final commit\n" +
+                "[master 3a91d45] Final commit\n" +
+                "3 files changed, 48 insertions(+), 3 deletions(-)", "programming3")
+        }
+    })
+
+    threeScroll(8500, 9000, (s) => {
+        if (monitorContentTag != "programming4") {
+            changeMonitorText(
+                "C:\\Jhareign>git add .\n\n" + 
+                "C:\\Jhareign>git commit -m Final commit\n" +
+                "[master 3a91d45] Final commit\n" +
+                "3 files changed, 48 insertions(+), 3 deletions(-)\n\n" +
+                "C:\\Jhareign>git push -u origin master", "programming4")
+        }
+    })
+
+    threeScroll(7500, 9000, (s) => {
         tweenScroll(s, 22, 15, camera.position.z, e => camera.position.z = e.val)
+    })
+
+    threeScroll(9000, 9500, (s) => {
+        tweenScroll(s, 21, -56, camera.position.x, e => camera.position.x = e.val)
+        tweenScroll(s, 38, 53, camera.position.y, e => camera.position.y = e.val)
+        tweenScroll(s, 22, 52, camera.position.z, e => camera.position.z = e.val)
+        tweenScroll(s, 0, 0, camera.rotation.x, e => camera.rotation.x = e.val)
+        tweenScroll(s, 0, -0.9, camera.rotation.y, e => camera.rotation.y = e.val)
+        tweenScroll(s, 0, 0, camera.rotation.z, e => camera.rotation.z = e.val)
+    })
+
+    threeScroll(9500, 10500, (s) => {
+        tweenScroll(s, -56, -22, camera.position.x, e => camera.position.x = e.val)
+        tweenScroll(s, 53, 23, camera.position.y, e => camera.position.y = e.val)
+        tweenScroll(s, 52, 26, camera.position.z, e => camera.position.z = e.val)
+        tweenScroll(s, 0, 0, camera.rotation.x, e => camera.rotation.x = e.val)
+        tweenScroll(s, -0.9, 0, camera.rotation.y, e => camera.rotation.y = e.val)
+        tweenScroll(s, 0, 0, camera.rotation.z, e => camera.rotation.z = e.val)
+    })
+
+    threeScroll(10500, 12000, (s) => {
+        tweenScroll(s, 26, 16, camera.position.z, e => camera.position.z = e.val)
     })
 }
 
@@ -290,7 +338,7 @@ function mainloop() {
     //controls.update();
     renderer.render(scene, camera);
 
-    //console.log(camera.position)
+    console.log(camera.position)
 }
 
 function onload() {
