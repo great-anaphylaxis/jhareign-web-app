@@ -1,6 +1,7 @@
+/* prerequisite */
 :root {
     --color-text: white;
-    --color-semi-bg: rgba(50, 50, 50, 0.65);
+    --color-semi-bg: rgba(17, 17, 17, 0.801);
 }
 
 
@@ -8,7 +9,7 @@
     color: white;
     top: 0;
     left: 0;
-    font-family: "Consolas", monospace;
+    font-family: "Consolas", monospace, auto;
 }
 
 canvas {
@@ -28,7 +29,13 @@ main {
 }
 
 
+/* intro section */
 #s1 {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    right: 0;
+
     background: var(--color-semi-bg);
     color: var(--color-text);
 
@@ -48,4 +55,79 @@ main {
 #s1 > p {
     margin: 0;
     font-size: 4vw;
+}
+
+/* who am i section */
+#s2 {
+    position: absolute;
+    top: 1500px;
+    left: 0;
+    right: 0;
+
+    background: var(--color-semi-bg);
+    color: var(--color-text);
+
+    max-width: 85vw;
+    margin: auto;
+    text-align: center;
+    padding: 2vw;
+    
+    border-radius: 1em;
+}
+
+#s2 > h1 {
+    margin: 0;
+    font-size: 6vw;
+}
+
+#s2 > p {
+    margin: 0;
+    font-size: 3.2vw;
+}
+
+/* bass */
+#s3 {
+    position: absolute;
+    top: 2250px;
+    left: 0;
+    right: 0;
+
+    background: var(--color-semi-bg);
+    color: var(--color-text);
+
+    max-width: 85vw;
+    margin: auto;
+    text-align: center;
+    padding: 2vw;
+    
+    border-radius: 1em;
+}
+
+#s3 > p {
+    margin: 0;
+    font-size: 3.2vw;
+}
+
+
+/* chess */
+#s4 {
+    position: absolute;
+    top: 3000px;
+    left: 0;
+    right: 0;
+
+    background: var(--color-semi-bg);
+    color: var(--color-text);
+
+    max-width: 85vw;
+    margin: auto;
+    text-align: center;
+    padding: 2vw;
+    
+    border-radius: 1em;
+}
+
+#s4 > p {
+    margin: 0;
+    font-size: 3.2vw;
 }

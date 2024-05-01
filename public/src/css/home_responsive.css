@@ -1,13 +1,45 @@
 @media screen and (min-width: 900px) {
+    /* intro section */
     #s1 {
         width: fit-content;
     }
 
     #s1 > h1 {
-        font-size: 5em;
+        font-size: 4.5em;
     }
 
     #s1 > p {
-        font-size: 2.2em;
+        font-size: 2em;
+    }
+
+    /* who am i section */
+    #s2 {
+        max-width: 65vw;
+    }
+
+    #s2 > h1 {
+        font-size: 2em;
+    }
+
+    #s2 > p {
+        font-size: 1.2em;
+    }
+
+    /* bass */
+    #s3 {
+        max-width: 65vw;
+    }
+
+    #s3 > p {
+        font-size: 1.2em;
+    }
+
+    /* chess */
+    #s4 {
+        max-width: 65vw;
+    }
+
+    #s4 > p {
+        font-size: 1.2em;
     }
 }

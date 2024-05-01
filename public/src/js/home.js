@@ -254,7 +254,7 @@ function onscroll() {
     t = document.body.getBoundingClientRect().top * -1;
 
     // position to computer
-    threeScroll("start", 1500, (s) => {
+    threeScroll("start", 500, (s) => {
         tweenScroll(s, -56, 22, camera.position.x, e => camera.position.x = e.val)
         tweenScroll(s, 53, 38, camera.position.y, e => camera.position.y = e.val)
         tweenScroll(s, 52, 25, camera.position.z, e => camera.position.z = e.val)
@@ -264,7 +264,7 @@ function onscroll() {
     })
 
     // zoom to computer
-    threeScroll(1500, 3000, (s) => {
+    threeScroll(500, 3000, (s) => {
         if (monitorContentTag != "initial") {
             changeMonitorText("C:\\Jhareign>webapp run", "initial")
         }
