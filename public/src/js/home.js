@@ -250,6 +250,7 @@ function onresize() {
 
 // very important functions
 function onscroll() {
+    TWEEN.update();
     t = document.body.getBoundingClientRect().top * -1;
 
     // position to computer
@@ -453,8 +454,6 @@ function mainloop() {
     TWEEN.update();
     //controls.update();
     renderer.render(scene, camera);
-
-    console.log(t)
 }
 
 function onload() {

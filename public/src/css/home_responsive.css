@@ -1,0 +1,13 @@
+@media screen and (min-width: 900px) {
+    #s1 {
+        width: fit-content;
+    }
+
+    #s1 > h1 {
+        font-size: 5em;
+    }
+
+    #s1 > p {
+        font-size: 2.2em;
+    }
+}

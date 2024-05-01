@@ -1,3 +1,16 @@
+:root {
+    --color-text: white;
+    --color-semi-bg: rgba(50, 50, 50, 0.65);
+}
+
+
+* {
+    color: white;
+    top: 0;
+    left: 0;
+    font-family: "Consolas", monospace;
+}
+
 canvas {
     position: fixed;
     top: 0;
@@ -7,4 +20,32 @@ canvas {
 main {
     position: absolute;
     height: 25000px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+}
+
+
+#s1 {
+    background: var(--color-semi-bg);
+    color: var(--color-text);
+
+    max-width: 85vw;
+    margin: 35vh auto;
+    text-align: center;
+    padding: 2vw;
+    
+    border-radius: 3vw;
+}
+
+#s1 > h1 {
+    margin: 0;
+    font-size: 9vw;
+}
+
+#s1 > p {
+    margin: 0;
+    font-size: 4vw;
 }
