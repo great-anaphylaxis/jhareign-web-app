@@ -252,6 +252,7 @@ function onresize() {
 function onscroll() {
     t = document.body.getBoundingClientRect().top * -1;
 
+    // position to computer
     threeScroll("start", 1500, (s) => {
         tweenScroll(s, -56, 22, camera.position.x, e => camera.position.x = e.val)
         tweenScroll(s, 53, 38, camera.position.y, e => camera.position.y = e.val)
@@ -261,6 +262,7 @@ function onscroll() {
         tweenScroll(s, 0, 0, camera.rotation.z, e => camera.rotation.z = e.val)
     })
 
+    // zoom to computer
     threeScroll(1500, 3000, (s) => {
         if (monitorContentTag != "initial") {
             changeMonitorText("C:\\Jhareign>webapp run", "initial")
@@ -274,6 +276,7 @@ function onscroll() {
         tweenScroll(s, 0, 0, camera.rotation.z, e => camera.rotation.z = e.val)
     })
 
+    // rotate to person
     threeScroll(3000, 4500, (s) => {
         tweenScroll(s, 22, -32, camera.position.x, e => camera.position.x = e.val)
         tweenScroll(s, 38, 47, camera.position.y, e => camera.position.y = e.val)
@@ -283,6 +286,7 @@ function onscroll() {
         tweenScroll(s, 0, 0, camera.rotation.z, e => camera.rotation.z = e.val)
     })
 
+    // zoom to person
     threeScroll(4500, 6000, (s) => {
         tweenScroll(s, -32, 15, camera.position.x, e => camera.position.x = e.val)
         tweenScroll(s, 47, 47, camera.position.y, e => camera.position.y = e.val)
@@ -292,6 +296,7 @@ function onscroll() {
         tweenScroll(s, 0, 0, camera.rotation.z, e => camera.rotation.z = e.val)
     })
 
+    // rotate to computer
     threeScroll(6000, 7500, (s) => {
         if (monitorContentTag != "programming1") {
             changeMonitorText(
@@ -306,6 +311,7 @@ function onscroll() {
         tweenScroll(s, 0, 0, camera.rotation.z, e => camera.rotation.z = e.val)
     })
 
+    // text change
     threeScroll(7500, 8000, (s) => {
         if (monitorContentTag != "programming2") {
             changeMonitorText(
@@ -321,6 +327,7 @@ function onscroll() {
         tweenScroll(s, 0, 0, camera.rotation.z, e => camera.rotation.z = e.val)
     })
 
+    // text change
     threeScroll(8000, 8500, (s) => {
         if (monitorContentTag != "programming3") {
             changeMonitorText(
@@ -331,6 +338,7 @@ function onscroll() {
         }
     })
 
+    // text change
     threeScroll(8500, 9000, (s) => {
         if (monitorContentTag != "programming4") {
             changeMonitorText(
@@ -342,6 +350,7 @@ function onscroll() {
         }
     })
 
+    // zoom to computer
     threeScroll(7500, 9000, (s) => {
         tweenScroll(s, 21, 21, camera.position.x, e => camera.position.x = e.val)
         tweenScroll(s, 38, 38, camera.position.y, e => camera.position.y = e.val)
@@ -351,6 +360,7 @@ function onscroll() {
         tweenScroll(s, 0, 0, camera.rotation.z, e => camera.rotation.z = e.val)
     })
 
+    // zoom out
     threeScroll(9000, 9500, (s) => {
         tweenScroll(s, 21, -56, camera.position.x, e => camera.position.x = e.val)
         tweenScroll(s, 38, 53, camera.position.y, e => camera.position.y = e.val)
@@ -360,6 +370,7 @@ function onscroll() {
         tweenScroll(s, 0, 0, camera.rotation.z, e => camera.rotation.z = e.val)
     })
 
+    // position to books and trophy
     threeScroll(9500, 10500, (s) => {
         tweenScroll(s, -56, -22, camera.position.x, e => camera.position.x = e.val)
         tweenScroll(s, 53, 23, camera.position.y, e => camera.position.y = e.val)
@@ -369,6 +380,7 @@ function onscroll() {
         tweenScroll(s, 0, 0, camera.rotation.z, e => camera.rotation.z = e.val)
     })
 
+    // zoom to books and trophy
     threeScroll(10500, 12000, (s) => {
         tweenScroll(s, -22, -22, camera.position.x, e => camera.position.x = e.val)
         tweenScroll(s, 23, 23, camera.position.y, e => camera.position.y = e.val)
@@ -378,6 +390,7 @@ function onscroll() {
         tweenScroll(s, 0, 0, camera.rotation.z, e => camera.rotation.z = e.val)
     })
 
+    // position to rocket
     threeScroll(12000, 13000, (s) => {
         tweenScroll(s, -22, -163, camera.position.x, e => camera.position.x = e.val)
         tweenScroll(s, 23, 36, camera.position.y, e => camera.position.y = e.val)
@@ -391,10 +404,11 @@ function onscroll() {
         tweenScroll(s, 20, 20, rocket.position.z, e => rocket.position.z = e.val)
     })
 
-    threeScroll(13000, "end", (s) => {
-        tweenScroll(s, -163, -163, camera.position.x, e => camera.position.x = e.val)
-        tweenScroll(s, 36, 36, camera.position.y, e => camera.position.y = e.val)
+    // go with rocket
+    threeScroll(13000, 18000, (s) => {
         tweenScroll(s, -163, 300, camera.position.x, e => camera.position.x = e.val)
+        tweenScroll(s, 36, 36, camera.position.y, e => camera.position.y = e.val)
+        tweenScroll(s, 26, 26, camera.position.z, e => camera.position.z = e.val)
         tweenScroll(s, 0, 0, camera.rotation.x, e => camera.rotation.x = e.val)
         tweenScroll(s, -1, -1, camera.rotation.y, e => camera.rotation.y = e.val)
         tweenScroll(s, 0, 0, camera.rotation.z, e => camera.rotation.z = e.val)
@@ -403,6 +417,33 @@ function onscroll() {
         tweenScroll(s, 35, 35, rocket.position.y, e => rocket.position.y = e.val)
         tweenScroll(s, 20, 20, rocket.position.z, e => rocket.position.z = e.val)
     })
+
+    // position to computer
+    threeScroll(18000, 19000, (s) => {
+        if (monitorContentTag != "contacts") {
+            changeMonitorText(
+                "C:\\Jhareign>firebase deploy", "contacts")
+        }
+
+        tweenScroll(s, 300, 22, camera.position.x, e => camera.position.x = e.val)
+        tweenScroll(s, 36, 38, camera.position.y, e => camera.position.y = e.val)
+        tweenScroll(s, 26, 22, camera.position.z, e => camera.position.z = e.val)
+        tweenScroll(s, 0, 0, camera.rotation.x, e => camera.rotation.x = e.val)
+        tweenScroll(s, -1, 0, camera.rotation.y, e => camera.rotation.y = e.val)
+        tweenScroll(s, 0, 0, camera.rotation.z, e => camera.rotation.z = e.val)
+    })
+
+    // zoom to computer
+    threeScroll(19000, "end", (s) => {
+        tweenScroll(s, 22, 22, camera.position.x, e => camera.position.x = e.val)
+        tweenScroll(s, 38, 38, camera.position.y, e => camera.position.y = e.val)
+        tweenScroll(s, 22, 15, camera.position.z, e => camera.position.z = e.val)
+        tweenScroll(s, 0, 0, camera.rotation.x, e => camera.rotation.x = e.val)
+        tweenScroll(s, 0, 0, camera.rotation.y, e => camera.rotation.y = e.val)
+        tweenScroll(s, 0, 0, camera.rotation.z, e => camera.rotation.z = e.val)
+    })
+
+
 
 }
 
@@ -420,7 +461,7 @@ function onload() {
     mainloop()
 
     createLights()
-    createStars(10000, 500, 100)
+    createStars(5000, 1000, 80)
     loadSceneModel()
     loadRocketModel()
     createMonitorScreen()
