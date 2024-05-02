@@ -165,4 +165,17 @@
     #s13 > h1 {
         font-size: 2.5em;
     }
+
+    /* contacts */
+    #s14 {
+        max-width: 65vw;
+    }
+
+    #s14 > h1 {
+        font-size: 2.5em;
+    }
+
+    #s14 > p {
+        font-size: 1.5em;
+    }
 }

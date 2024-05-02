@@ -22,7 +22,7 @@ canvas {
 
 main {
     position: absolute;
-    height: 25000px;
+    height: 22000px;
     top: 0;
     left: 0;
     right: 0;
@@ -410,4 +410,33 @@ main {
 #s13 > h1 {
     margin: 0;
     font-size: 6vw;
+}
+
+
+/* contacts */
+#s14 {
+    position: absolute;
+    top: 21500px;
+    left: 0;
+    right: 0;
+
+    background: var(--color-semi-bg);
+    color: var(--color-text);
+
+    max-width: 85vw;
+    margin: auto;
+    text-align: center;
+    padding: 2vw;
+    
+    border-radius: 1em;
+}
+
+#s14 > h1 {
+    margin: 0;
+    font-size: 6vw;
+}
+
+#s14 > p {
+    margin: 0;
+    font-size: 4vw;
 }
