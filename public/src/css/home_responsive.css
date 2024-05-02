@@ -82,4 +82,45 @@
     #s7 > p {
         font-size: 1.5em;
     }
+
+    /* school life */
+    #s8 {
+        max-width: 65vw;
+    }
+
+    #s8 > h1 {
+        font-size: 2.5em;
+    }
+
+    #s8 > p {
+        font-size: 1.5em;
+    }
+
+    
+    /* achievements */
+    #s9 {
+        max-width: 65vw;
+    }
+
+    #s9 > h1 {
+        font-size: 2.5em;
+    }
+
+    #s9 > p {
+        font-size: 1.5em;
+    }
+
+
+    /* projects */
+    #s10 {
+        max-width: 65vw;
+    }
+
+    #s10 > h1 {
+        font-size: 2.5em;
+    }
+
+    #s10 > p {
+        font-size: 1.5em;
+    }
 }

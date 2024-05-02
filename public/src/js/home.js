@@ -382,7 +382,7 @@ function onscroll() {
     })
 
     // zoom to books and trophy
-    threeScroll(10500, 12000, (s) => {
+    threeScroll(10500, 12500, (s) => {
         tweenScroll(s, -22, -22, camera.position.x, e => camera.position.x = e.val)
         tweenScroll(s, 28, 28, camera.position.y, e => camera.position.y = e.val)
         tweenScroll(s, 46, 36, camera.position.z, e => camera.position.z = e.val)
@@ -392,7 +392,7 @@ function onscroll() {
     })
 
     // position to rocket
-    threeScroll(12000, 13000, (s) => {
+    threeScroll(12500, 13500, (s) => {
         tweenScroll(s, -22, -163, camera.position.x, e => camera.position.x = e.val)
         tweenScroll(s, 28, 36, camera.position.y, e => camera.position.y = e.val)
         tweenScroll(s, 36, 26, camera.position.z, e => camera.position.z = e.val)
@@ -406,7 +406,7 @@ function onscroll() {
     })
 
     // go with rocket
-    threeScroll(13000, 18000, (s) => {
+    threeScroll(13500, 18000, (s) => {
         tweenScroll(s, -163, 300, camera.position.x, e => camera.position.x = e.val)
         tweenScroll(s, 36, 36, camera.position.y, e => camera.position.y = e.val)
         tweenScroll(s, 26, 26, camera.position.z, e => camera.position.z = e.val)

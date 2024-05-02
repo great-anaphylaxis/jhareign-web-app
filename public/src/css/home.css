@@ -224,3 +224,90 @@ main {
 #s7 > .contrast {
     color: var(--color-text-semi-contrast);
 }
+
+
+/* school life */
+#s8 {
+    position: absolute;
+    top: 11500px;
+    left: 0;
+    right: 0;
+
+    background: var(--color-semi-bg);
+    color: var(--color-text);
+
+    max-width: 85vw;
+    margin: auto;
+    text-align: center;
+    padding: 2vw;
+    
+    border-radius: 1em;
+}
+
+#s8 > h1 {
+    margin: 0;
+    font-size: 6vw;
+}
+
+#s8 > p {
+    margin: 0;
+    font-size: 4vw;
+}
+
+
+/* achievements */
+#s9 {
+    position: absolute;
+    top: 12500px;
+    left: 0;
+    right: 0;
+
+    background: var(--color-semi-bg);
+    color: var(--color-text);
+
+    max-width: 85vw;
+    margin: auto;
+    text-align: center;
+    padding: 2vw;
+    
+    border-radius: 1em;
+}
+
+#s9 > h1 {
+    margin: 0;
+    font-size: 6vw;
+}
+
+#s9 > p {
+    margin: 0;
+    font-size: 4vw;
+}
+
+
+/* projects */
+#s10 {
+    position: absolute;
+    top: 13500px;
+    left: 0;
+    right: 0;
+
+    background: var(--color-semi-bg);
+    color: var(--color-text);
+
+    max-width: 85vw;
+    margin: auto;
+    text-align: center;
+    padding: 2vw;
+    
+    border-radius: 1em;
+}
+
+#s10 > h1 {
+    margin: 0;
+    font-size: 6vw;
+}
+
+#s10 > p {
+    margin: 0;
+    font-size: 4vw;
+}
