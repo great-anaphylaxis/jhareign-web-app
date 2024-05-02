@@ -123,4 +123,46 @@
     #s10 > p {
         font-size: 1.5em;
     }
+
+
+    /* cards */
+    .card {
+        width: 50vw;
+    }
+
+    .card > img {
+        width: 50vw;
+    }
+
+    .card > div {
+        width: 50vw;
+    }
+
+
+    /* games */
+    #s11 {
+        max-width: 85vw;
+    }
+
+    #s11 > h1 {
+        font-size: 2.5em;
+    }
+
+    /* websites */
+    #s12 {
+        max-width: 85vw;
+    }
+
+    #s12 > h1 {
+        font-size: 2.5em;
+    }
+
+    /* other projects */
+    #s13 {
+        max-width: 85vw;
+    }
+
+    #s13 > h1 {
+        font-size: 2.5em;
+    }
 }
