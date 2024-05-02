@@ -1,0 +1,5 @@
+- age
+- elo rating
+- picture of me
+- programming languages coded
+- programming languages

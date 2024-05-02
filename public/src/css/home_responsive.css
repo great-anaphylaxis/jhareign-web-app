@@ -22,7 +22,7 @@
     }
 
     #s2 > p {
-        font-size: 2em;
+        font-size: 1.5em;
     }
 
     /* bass */
@@ -31,7 +31,7 @@
     }
 
     #s3 > p {
-        font-size: 2em;
+        font-size: 1.5em;
     }
 
     /* chess */
@@ -40,6 +40,46 @@
     }
 
     #s4 > p {
-        font-size: 2em;
+        font-size: 1.5em;
+    }
+
+    /* picture of me */
+    #s5 {
+        max-width: 65vw;
+    }
+
+    #s5 > p {
+        font-size: 1.5em;
+    }
+
+    #s5 > img {
+        max-width: 60vw;
+    }
+
+    /* as a programmer */
+    #s6 {
+        max-width: 65vw;
+    }
+
+    #s6 > h1 {
+        font-size: 2.5em;
+    }
+
+    #s6 > p {
+        font-size: 1.5em;
+    }
+
+
+    /* programming languages */
+    #s7 {
+        max-width: 65vw;
+    }
+
+    #s7 > h1 {
+        font-size: 2.5em;
+    }
+
+    #s7 > p {
+        font-size: 1.5em;
     }
 }

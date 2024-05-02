@@ -278,7 +278,7 @@ function onscroll() {
     })
 
     // rotate to person
-    threeScroll(3000, 4500, (s) => {
+    threeScroll(3000, 3500, (s) => {
         tweenScroll(s, 22, -32, camera.position.x, e => camera.position.x = e.val)
         tweenScroll(s, 38, 47, camera.position.y, e => camera.position.y = e.val)
         tweenScroll(s, 20, -50, camera.position.z, e => camera.position.z = e.val)
@@ -288,7 +288,7 @@ function onscroll() {
     })
 
     // zoom to person
-    threeScroll(4500, 6000, (s) => {
+    threeScroll(3500, 5000, (s) => {
         tweenScroll(s, -32, 15, camera.position.x, e => camera.position.x = e.val)
         tweenScroll(s, 47, 47, camera.position.y, e => camera.position.y = e.val)
         tweenScroll(s, -50, 30, camera.position.z, e => camera.position.z = e.val)
@@ -298,7 +298,7 @@ function onscroll() {
     })
 
     // rotate to computer
-    threeScroll(6000, 7500, (s) => {
+    threeScroll(5000, 6500, (s) => {
         if (monitorContentTag != "programming1") {
             changeMonitorText(
                 "C:\\Jhareign>git add .", "programming1")
@@ -313,7 +313,7 @@ function onscroll() {
     })
 
     // text change
-    threeScroll(7500, 8000, (s) => {
+    threeScroll(6500, 8000, (s) => {
         if (monitorContentTag != "programming2") {
             changeMonitorText(
                 "C:\\Jhareign>git add .\n\n" + 
@@ -352,7 +352,7 @@ function onscroll() {
     })
 
     // zoom to computer
-    threeScroll(7500, 9000, (s) => {
+    threeScroll(6500, 9000, (s) => {
         tweenScroll(s, 22, 22, camera.position.x, e => camera.position.x = e.val)
         tweenScroll(s, 38, 38, camera.position.y, e => camera.position.y = e.val)
         tweenScroll(s, 25, 20, camera.position.z, e => camera.position.z = e.val)

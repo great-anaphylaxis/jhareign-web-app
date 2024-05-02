@@ -1,7 +1,8 @@
 /* prerequisite */
 :root {
     --color-text: white;
-    --color-semi-bg: rgba(17, 17, 17, 0.801);
+    --color-semi-bg: rgba(15, 15, 15, 0.911);
+    --color-text-semi-contrast: rgb(189, 255, 186);
 }
 
 
@@ -130,4 +131,96 @@ main {
 #s4 > p {
     margin: 0;
     font-size: 4vw;
+}
+
+
+/* picture of me */
+#s5 {
+    position: absolute;
+    top: 4800px;
+    left: 0;
+    right: 0;
+
+    background: var(--color-semi-bg);
+    color: var(--color-text);
+
+    max-width: 85vw;
+    margin: auto;
+    text-align: center;
+    padding: 2vw;
+    
+    border-radius: 1em;
+}
+
+#s5 > p {
+    margin: 0;
+    font-size: 4vw;
+}
+
+#s5 > img {
+    max-width: 80vw;
+    max-height: 60vh;
+    margin: 1em;
+}
+
+
+/* as a programmer */
+#s6 {
+    position: absolute;
+    top: 7500px;
+    left: 0;
+    right: 0;
+
+    background: var(--color-semi-bg);
+    color: var(--color-text);
+
+    max-width: 85vw;
+    margin: auto;
+    text-align: center;
+    padding: 2vw;
+    
+    border-radius: 1em;
+}
+
+#s6 > h1 {
+    margin: 0;
+    font-size: 6vw;
+}
+
+#s6 > p {
+    margin: 0;
+    font-size: 4vw;
+}
+
+
+/* programming languages */
+#s7 {
+    position: absolute;
+    top: 8500px;
+    left: 0;
+    right: 0;
+
+    background: var(--color-semi-bg);
+    color: var(--color-text);
+
+    max-width: 85vw;
+    margin: auto;
+    text-align: center;
+    padding: 2vw;
+    
+    border-radius: 1em;
+}
+
+#s7 > h1 {
+    margin: 0;
+    font-size: 6vw;
+}
+
+#s7 > p {
+    margin: 0;
+    font-size: 4vw;
+}
+
+#s7 > .contrast {
+    color: var(--color-text-semi-contrast);
 }
