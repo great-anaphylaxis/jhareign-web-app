@@ -32,7 +32,7 @@ main {
 /* intro section */
 #s1 {
     position: absolute;
-    top: 0px;
+    top: 200px;
     left: 0;
     right: 0;
 
@@ -40,7 +40,7 @@ main {
     color: var(--color-text);
 
     max-width: 85vw;
-    margin: 35vh auto;
+    margin: auto;
     text-align: center;
     padding: 2vw;
     
@@ -60,7 +60,7 @@ main {
 /* who am i section */
 #s2 {
     position: absolute;
-    top: 1500px;
+    top: 950px;
     left: 0;
     right: 0;
 
@@ -82,13 +82,13 @@ main {
 
 #s2 > p {
     margin: 0;
-    font-size: 3.2vw;
+    font-size: 4vw;
 }
 
 /* bass */
 #s3 {
     position: absolute;
-    top: 2250px;
+    top: 1700px;
     left: 0;
     right: 0;
 
@@ -105,14 +105,14 @@ main {
 
 #s3 > p {
     margin: 0;
-    font-size: 3.2vw;
+    font-size: 4vw;
 }
 
 
 /* chess */
 #s4 {
     position: absolute;
-    top: 3000px;
+    top: 2450px;
     left: 0;
     right: 0;
 
@@ -129,5 +129,5 @@ main {
 
 #s4 > p {
     margin: 0;
-    font-size: 3.2vw;
+    font-size: 4vw;
 }
