@@ -4,33 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OS - Great Anaphylaxis</title>
-    <link rel="stylesheet" href="/src/css/base.css">
-    <link rel="stylesheet" href="/src/css/projects-base.css">
+    <title>Operating System by Jhareign Solidum</title>
 </head>
 <body>
-    <div id="data" data-name="project"></div>
-
-    <div class="topbar">
-        <a href="/home.html">
-            <div class="topbar-items">Home</div>
-        </a>
-        <a href="/projects.html">
-            <div class="topbar-items">Projects</div>
-        </a>
-    </div>
-
-    <div class="description-text header" id="description-text-4">
-        <div class="ch-title">OS</div>
-        <hr>
-        <div class="ch-description">
-            The project you are looking can be downloaded <a target="_blank" href="os.bin" download="os.bin">here</a>
-        </div>
-    </div>
-
-    <canvas id="canvas"></canvas>
-
-    <script type="module" src="/src/js/three.js"></script>
-    <script type="module" src="/src/js/base.js"></script>
+    <h1>Operating System by Jhareign Solidum (2022)</h1>
+    <hr>
+    <p>
+        This is my attempt at creating my own operating system. It 
+        is a 32 bit operating system with it's own bootloader. Note: 
+        It has not been tested on real hardware so it MIGHT NOT WORK 
+        ON REAL HARDWARE. But, it works on QEMU (a virtual machine).
+    </p>
+    <p>The project can be downloaded <a href="os.bin">here</a></p>
+    <p>I use this to run the bin file</p>
+    <pre>"C:\Program Files\qemu\qemu-system-x86_64.exe" -soundhw pcspk,sb16 "os.bin"</pre>
+    <p>The source code can be downloaded <a href="os.zip">here</a>. It is very messy though.</p>
 </body>
 </html>

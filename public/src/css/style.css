@@ -15,6 +15,10 @@
     font-family: "Consolas", monospace, auto;
 }
 
+body {
+    background-color: black
+}
+
 canvas {
     position: fixed;
     top: 0;
@@ -443,6 +447,35 @@ main {
 }
 
 #s14 > p {
+    margin: 0;
+    font-size: 4vw;
+}
+
+
+/* redirect section */
+#r {
+    position: absolute;
+    top: 25vh;
+    left: 0;
+    right: 0;
+
+    background: var(--color-semi-bg);
+    color: var(--color-text);
+
+    max-width: 85vw;
+    margin: auto;
+    text-align: center;
+    padding: 2vw;
+    
+    border-radius: 1em;
+}
+
+#r > h1 {
+    margin: 0;
+    font-size: 6vw;
+}
+
+#r > p {
     margin: 0;
     font-size: 4vw;
 }

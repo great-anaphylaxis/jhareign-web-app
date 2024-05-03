@@ -231,9 +231,19 @@ function changeMonitorText(text, contentTag) {
     monitorContentTag = contentTag
 }
 
-export function loadProject(type, name, title, description) {
+export function loadProject(type, name, title, description, link="default") {
     let a = document.createElement('a');
-    a.href = "/projects/" + name + "/" + name + ".html";
+    
+    if (link == "default") {
+        a.href = "/projects/" + name + "/" + name + ".html";
+    }
+
+    else {
+        a.href = link;
+    }
+    
+    a.target = '_blank';
+
     let c = document.createElement('article');
     c.classList.add("card")
 

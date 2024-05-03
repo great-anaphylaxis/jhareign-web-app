@@ -174,4 +174,18 @@
     #s14 > p {
         font-size: 1.5em;
     }
+
+
+    /* redirect section */
+    #r {
+        max-width: 65vw;
+    }
+
+    #r > h1 {
+        font-size: 2.5em;
+    }
+
+    #r > p {
+        font-size: 1.5em;
+    }
 }
