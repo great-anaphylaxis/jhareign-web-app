@@ -232,6 +232,8 @@ function changeMonitorText(text, contentTag) {
 }
 
 export function loadProject(type, name, title, description) {
+    let a = document.createElement('a');
+    a.href = "/projects/" + name + "/" + name + ".html";
     let c = document.createElement('article');
     c.classList.add("card")
 
@@ -250,17 +252,18 @@ export function loadProject(type, name, title, description) {
     div.appendChild(h2);
     div.appendChild(p);
     c.appendChild(div);
+    a.appendChild(c)
 
     if (type == "games") {
-        games_cards.appendChild(c);
+        games_cards.appendChild(a);
     }
 
     else if (type == "websites") {
-        websites_cards.appendChild(c);
+        websites_cards.appendChild(a);
     }
 
     else if (type == "other-projects") {
-        otherprojects_cards.appendChild(c);
+        otherprojects_cards.appendChild(a);
     }
 }
 

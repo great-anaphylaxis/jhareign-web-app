@@ -1,6 +1,7 @@
 /* prerequisite */
 :root {
     --color-text: white;
+    --color-light-bg: rgba(75, 75, 75, 0.911);
     --color-semi-bg: rgba(15, 15, 15, 0.911);
     --color-almost-bg: rgba(8, 8, 8, 0.95);
     --color-text-semi-contrast: rgb(189, 255, 186);
@@ -323,8 +324,16 @@ main {
     justify-content: space-around;
 }
 
-.card {
-    border: 1px solid var(--color-text);
+.cards > a {
+    text-decoration: none;
+    background-color: var(--color-semi-bg);
+    border-radius: 2em;
+    padding: 0.5em 0;
+}
+
+.cards > a:hover {
+    background-color: var(--color-light-bg);
+    border-radius: 2em;
 }
 
 .card > img {
