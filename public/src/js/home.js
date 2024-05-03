@@ -28,9 +28,9 @@ let monitorContentTag;
 let rocket;
 
 // cards
-let games_cards = document.getElementById("games");
-let websites_cards = document.getElementById("websites");
-let otherprojects_cards = document.getElementById("other-projects");
+let games_cards = document.querySelector('[data-type="games"]');
+let websites_cards = document.querySelector('[data-type="websites"]');
+let otherprojects_cards = document.querySelector('[data-type="other-projects"]');
 
 // essential utility functions
 function lerp(start, end, amount) {

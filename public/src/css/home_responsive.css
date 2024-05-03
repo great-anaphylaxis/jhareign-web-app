@@ -126,10 +126,6 @@
 
 
     /* cards */
-    .card {
-        width: 50vw;
-    }
-
     .card > img {
         width: 50vw;
     }

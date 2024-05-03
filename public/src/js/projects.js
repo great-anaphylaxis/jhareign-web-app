@@ -1,4 +1,4 @@
-import { loadProject } from "./home";
+import { loadProject } from "/src/js/home.js";
 
 
 // games
