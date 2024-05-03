@@ -27,6 +27,11 @@ let monitorContentTag;
 // rocket model
 let rocket;
 
+// cards
+let games_cards = document.getElementById("games");
+let websites_cards = document.getElementById("websites");
+let otherprojects_cards = document.getElementById("other-projects");
+
 // essential utility functions
 function lerp(start, end, amount) {
     return start * (1 - amount) + end * amount;
@@ -224,6 +229,39 @@ function changeMonitorText(text, contentTag) {
     }
     monitorMaterial.map.needsUpdate = true;
     monitorContentTag = contentTag
+}
+
+export function loadProject(type, name, title, description) {
+    let c = document.createElement('article');
+    c.classList.add("card")
+
+    let img = document.createElement('img');
+    img.src = "/src/images/projects/" + name + ".webp";
+    c.appendChild(img);
+
+    let div = document.createElement('div');
+
+    let h2 = document.createElement('h2');
+    h2.innerText = title;
+
+    let p = document.createElement('p');
+    p.innerText = description;
+
+    div.appendChild(h2);
+    div.appendChild(p);
+    c.appendChild(div);
+
+    if (type == "games") {
+        games_cards.appendChild(c);
+    }
+
+    else if (type == "websites") {
+        websites_cards.appendChild(c);
+    }
+
+    else if (type == "other-projects") {
+        otherprojects_cards.appendChild(c);
+    }
 }
 
 
