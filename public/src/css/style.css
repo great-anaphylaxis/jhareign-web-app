@@ -92,10 +92,10 @@ main {
     font-size: 4vw;
 }
 
-/* bass */
+/* hobbies */
 #s3 {
     position: absolute;
-    top: 1700px;
+    top: 2400px;
     left: 0;
     right: 0;
 
@@ -110,16 +110,21 @@ main {
     border-radius: 1em;
 }
 
+#s3 > h1 {
+    margin: 0;
+    font-size: 6vw;
+}
+
 #s3 > p {
     margin: 0;
     font-size: 4vw;
 }
 
 
-/* chess */
+/* picture of me */
 #s4 {
     position: absolute;
-    top: 2450px;
+    top: 4800px;
     left: 0;
     right: 0;
 
@@ -139,11 +144,17 @@ main {
     font-size: 4vw;
 }
 
+#s4 > img {
+    max-width: 80vw;
+    max-height: 60vh;
+    margin: 1em;
+}
 
-/* picture of me */
+
+/* as a programmer */
 #s5 {
     position: absolute;
-    top: 4800px;
+    top: 7500px;
     left: 0;
     right: 0;
 
@@ -158,22 +169,21 @@ main {
     border-radius: 1em;
 }
 
+#s5 > h1 {
+    margin: 0;
+    font-size: 6vw;
+}
+
 #s5 > p {
     margin: 0;
     font-size: 4vw;
 }
 
-#s5 > img {
-    max-width: 80vw;
-    max-height: 60vh;
-    margin: 1em;
-}
 
-
-/* as a programmer */
+/* programming languages */
 #s6 {
     position: absolute;
-    top: 7500px;
+    top: 8500px;
     left: 0;
     right: 0;
 
@@ -198,11 +208,15 @@ main {
     font-size: 4vw;
 }
 
+#s6 > .contrast {
+    color: var(--color-text-semi-contrast);
+}
 
-/* programming languages */
+
+/* school life */
 #s7 {
     position: absolute;
-    top: 8500px;
+    top: 11500px;
     left: 0;
     right: 0;
 
@@ -227,15 +241,11 @@ main {
     font-size: 4vw;
 }
 
-#s7 > .contrast {
-    color: var(--color-text-semi-contrast);
-}
 
-
-/* school life */
+/* achievements */
 #s8 {
     position: absolute;
-    top: 11500px;
+    top: 12500px;
     left: 0;
     right: 0;
 
@@ -261,10 +271,10 @@ main {
 }
 
 
-/* achievements */
+/* projects */
 #s9 {
     position: absolute;
-    top: 12500px;
+    top: 13500px;
     left: 0;
     right: 0;
 
@@ -290,35 +300,6 @@ main {
 }
 
 
-/* projects */
-#s10 {
-    position: absolute;
-    top: 13500px;
-    left: 0;
-    right: 0;
-
-    background: var(--color-semi-bg);
-    color: var(--color-text);
-
-    max-width: 85vw;
-    margin: auto;
-    text-align: center;
-    padding: 2vw;
-    
-    border-radius: 1em;
-}
-
-#s10 > h1 {
-    margin: 0;
-    font-size: 6vw;
-}
-
-#s10 > p {
-    margin: 0;
-    font-size: 4vw;
-}
-
-
 /* cards */
 .cards {
     display: flex;
@@ -337,7 +318,6 @@ main {
 
 .cards > a:hover {
     background-color: var(--color-light-bg);
-    border-radius: 2em;
 }
 
 .card > img {
@@ -355,9 +335,32 @@ main {
 
 
 /* games */
-#s11 {
+#s10 {
     position: absolute;
     top: 14500px;
+    left: 0;
+    right: 0;
+
+    color: var(--color-text);
+
+    max-width: 100vw;
+    margin: auto;
+    text-align: center;
+    padding: 2vw;
+    
+    border-radius: 1em;
+}
+
+#s10 > h1 {
+    margin: 0;
+    font-size: 6vw;
+}
+
+
+/* websites */
+#s11 {
+    position: absolute;
+    top: 16000px;
     left: 0;
     right: 0;
 
@@ -377,10 +380,10 @@ main {
 }
 
 
-/* websites */
+/* other projects */
 #s12 {
     position: absolute;
-    top: 16000px;
+    top: 17500px;
     left: 0;
     right: 0;
 
@@ -400,31 +403,8 @@ main {
 }
 
 
-/* other projects */
-#s13 {
-    position: absolute;
-    top: 17500px;
-    left: 0;
-    right: 0;
-
-    color: var(--color-text);
-
-    max-width: 100vw;
-    margin: auto;
-    text-align: center;
-    padding: 2vw;
-    
-    border-radius: 1em;
-}
-
-#s13 > h1 {
-    margin: 0;
-    font-size: 6vw;
-}
-
-
 /* contacts */
-#s14 {
+#s13 {
     position: absolute;
     top: 21500px;
     left: 0;
@@ -441,12 +421,12 @@ main {
     border-radius: 1em;
 }
 
-#s14 > h1 {
+#s13 > h1 {
     margin: 0;
     font-size: 6vw;
 }
 
-#s14 > p {
+#s13 > p {
     margin: 0;
     font-size: 4vw;
 }
@@ -478,4 +458,40 @@ main {
 #r > p {
     margin: 0;
     font-size: 4vw;
+}
+
+
+/* navigation */
+nav {
+    position: fixed;
+    width: 100%;
+    color: var(--color-text);
+    background-color: black;
+    display: flex;
+    z-index: 10;
+    border: 1px solid var(--color-text);
+}
+
+nav > a {
+    padding: 1em 1em;
+    border: 1px solid var(--color-text);
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    cursor: pointer;
+}
+
+nav > a:hover {
+    background-color: var(--color-light-bg)
+}
+
+nav > a > img {
+    width: 32px;
+    height: 32px;
+    filter: invert(1);
+}
+
+nav > a > p {
+    display: none;
+    font-size: 1em;
 }

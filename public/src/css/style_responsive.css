@@ -1,4 +1,4 @@
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 800px) {
     /* intro section */
     #s1 {
         width: fit-content;
@@ -25,16 +25,20 @@
         font-size: 1.5em;
     }
 
-    /* bass */
+    /* hobbies */
     #s3 {
         max-width: 65vw;
+    }
+
+    #s3 > h1 {
+        font-size: 2.5em;
     }
 
     #s3 > p {
         font-size: 1.5em;
     }
 
-    /* chess */
+    /* picture of me */
     #s4 {
         max-width: 65vw;
     }
@@ -43,20 +47,25 @@
         font-size: 1.5em;
     }
 
-    /* picture of me */
+    #s4 > img {
+        max-width: 60vw;
+    }
+
+    /* as a programmer */
     #s5 {
         max-width: 65vw;
+    }
+
+    #s5 > h1 {
+        font-size: 2.5em;
     }
 
     #s5 > p {
         font-size: 1.5em;
     }
 
-    #s5 > img {
-        max-width: 60vw;
-    }
 
-    /* as a programmer */
+    /* programming languages */
     #s6 {
         max-width: 65vw;
     }
@@ -69,8 +78,7 @@
         font-size: 1.5em;
     }
 
-
-    /* programming languages */
+    /* school life */
     #s7 {
         max-width: 65vw;
     }
@@ -83,7 +91,8 @@
         font-size: 1.5em;
     }
 
-    /* school life */
+    
+    /* achievements */
     #s8 {
         max-width: 65vw;
     }
@@ -96,8 +105,8 @@
         font-size: 1.5em;
     }
 
-    
-    /* achievements */
+
+    /* projects */
     #s9 {
         max-width: 65vw;
     }
@@ -107,20 +116,6 @@
     }
 
     #s9 > p {
-        font-size: 1.5em;
-    }
-
-
-    /* projects */
-    #s10 {
-        max-width: 65vw;
-    }
-
-    #s10 > h1 {
-        font-size: 2.5em;
-    }
-
-    #s10 > p {
         font-size: 1.5em;
     }
 
@@ -136,6 +131,15 @@
 
 
     /* games */
+    #s10 {
+        max-width: 85vw;
+    }
+
+    #s10 > h1 {
+        font-size: 2.5em;
+    }
+
+    /* websites */
     #s11 {
         max-width: 85vw;
     }
@@ -144,7 +148,7 @@
         font-size: 2.5em;
     }
 
-    /* websites */
+    /* other projects */
     #s12 {
         max-width: 85vw;
     }
@@ -153,25 +157,16 @@
         font-size: 2.5em;
     }
 
-    /* other projects */
+    /* contacts */
     #s13 {
-        max-width: 85vw;
+        max-width: 65vw;
     }
 
     #s13 > h1 {
         font-size: 2.5em;
     }
 
-    /* contacts */
-    #s14 {
-        max-width: 65vw;
-    }
-
-    #s14 > h1 {
-        font-size: 2.5em;
-    }
-
-    #s14 > p {
+    #s13 > p {
         font-size: 1.5em;
     }
 
@@ -187,5 +182,35 @@
 
     #r > p {
         font-size: 1.5em;
+    }
+
+
+    /* navigation */
+    nav > a {
+        font-size: 1.1em;
+        padding: 0.25em 1em;
+    }
+
+    nav > a > p {
+        display: inline;
+    }
+}
+
+
+@keyframes navbar-show {
+    0% {
+        top: -100px;
+    }
+    100% {
+        top: -0px;
+    }
+}
+
+@keyframes navbar-hide {
+    0% {
+        top: 0px;
+    }
+    100% {
+        top: -100px;
     }
 }

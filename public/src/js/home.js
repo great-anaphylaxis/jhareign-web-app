@@ -18,6 +18,7 @@ let ticking = false;
 
 // scroll progress
 let t = 0
+let pastT = 0;
 
 // monitor canvas
 let monitor;
@@ -31,6 +32,9 @@ let rocket;
 let games_cards = document.querySelector('[data-type="games"]');
 let websites_cards = document.querySelector('[data-type="websites"]');
 let otherprojects_cards = document.querySelector('[data-type="other-projects"]');
+
+// nav
+let nav = document.querySelector('nav');
 
 // essential utility functions
 function lerp(start, end, amount) {
@@ -284,6 +288,7 @@ function onscrolloptimize() {
     if (!ticking) {
         window.requestAnimationFrame(() => {
             onscroll();
+            onscrollnav();
             ticking = false;
         });
   
@@ -298,10 +303,21 @@ function onresize() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
+function onscrollnav() {
+    if (t > pastT) {
+        nav.style.animation = "0.4s ease 0s 1 normal forwards running navbar-hide";
+    }
+
+    else {
+        nav.style.animation = "0.4s ease 0s 1 normal forwards running navbar-show";
+    }
+}
+
 
 // very important functions
 function onscroll() {
     TWEEN.update();
+    pastT = t;
     t = document.body.getBoundingClientRect().top * -1;
 
     // position to computer
