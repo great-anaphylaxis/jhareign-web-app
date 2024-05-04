@@ -8,6 +8,13 @@
     --color-text-semi-contrast: rgb(189, 255, 186);
     --color-contrast-bg: rgb(7, 219, 0);
     --color-contrast-dark-bg: rgb(1, 32, 0);
+
+    --color-master: rgb(68, 0, 255);
+    --color-expert: rgb(0, 89, 255);
+    --color-advanced: rgb(0, 255, 0);
+    --color-proficient: rgb(6, 182, 0);
+    --color-competent: rgb(80, 179, 0);
+    --color-learner: rgb(168, 206, 0);
 }
 
 
@@ -535,4 +542,94 @@ nav > a > p {
     background-color: var(--color-contrast-bg);
     color: var(--color-contrast-dark-bg);
     font-family: "Arial";
+}
+
+
+
+/* barlists */
+.barlist {
+    margin: 0;
+    font-size: 3.25vw;
+    user-select: none;
+}
+
+.baritem {
+    border-radius: 1em;
+    display: flex;
+    align-items: center;
+}
+
+.baritem > .name {
+    display: inline;
+    margin: 0;
+    text-align: right;
+    width: 30%;
+    padding-right: 0.5em;
+}
+
+.baritem > meter {
+    display: inline;
+    height: 1em;
+    width: 40%;
+}
+
+.baritem > meter::-webkit-meter-bar {
+    background-color: var(--color-almost-bg);
+    border-radius: 0;
+}
+
+.baritem > meter[data-status="Master"]::-webkit-meter-optimum-value {
+    background-color: var(--color-master);
+}
+
+.baritem > .status[data-status="Expert"] {
+    color: var(--color-master)
+}
+
+.baritem > meter[data-status="Expert"]::-webkit-meter-optimum-value {
+    background-color: var(--color-expert);
+}
+
+.baritem > .status[data-status="Expert"] {
+    color: var(--color-expert)
+}
+
+.baritem > meter[data-status="Advanced"]::-webkit-meter-optimum-value {
+    background-color: var(--color-advanced);
+}
+
+.baritem > .status[data-status="Advanced"] {
+    color: var(--color-advanced)
+}
+
+.baritem > meter[data-status="Proficient"]::-webkit-meter-optimum-value {
+    background-color: var(--color-proficient);
+}
+
+.baritem > .status[data-status="Proficient"] {
+    color: var(--color-proficient)
+}
+
+.baritem > meter[data-status="Competent"]::-webkit-meter-optimum-value {
+    background-color: var(--color-competent);
+}
+
+.baritem > .status[data-status="Competent"] {
+    color: var(--color-competent)
+}
+
+.baritem > meter[data-status="Learner"]::-webkit-meter-optimum-value {
+    background-color: var(--color-learner);
+}
+
+.baritem > .status[data-status="Learner"] {
+    color: var(--color-learner)
+}
+
+.baritem > .status {
+    display: inline;
+    text-align: left;
+    margin: 0;
+    padding-left: 0.5em;
+    width: 30%;
 }

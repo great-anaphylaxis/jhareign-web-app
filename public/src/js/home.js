@@ -50,6 +50,10 @@ let loaded = {
 // scrolling into view
 let isScrollingIntoView = false;
 
+// barlists
+let main_barlist = document.querySelector('.barlist[data-type="main"]');
+let experience_barlist = document.querySelector('.barlist[data-type="experience"]');
+
 // essential utility functions
 function lerp(start, end, amount) {
     return start * (1 - amount) + end * amount;
@@ -341,6 +345,37 @@ function hideNavBar() {
     nav.style.animation = "0.4s ease 0s 1 normal forwards running navbar-hide";
 }
 
+export function listProgrammingLanguage(name, value, status, list) {
+    let bar = document.createElement("div");
+    bar.classList.add("baritem");
+
+    let pname = document.createElement("p");
+    pname.classList.add("name");
+    pname.innerText = name;
+
+    let meter = document.createElement("meter");
+    meter.min = "0";
+    meter.max = "100";
+    meter.value = value + "";
+    meter.dataset.status = status;
+
+    let pstatus = document.createElement("p");
+    pstatus.classList.add("status");
+    pstatus.innerText = status;
+    pstatus.dataset.status = status;
+
+    bar.appendChild(pname);
+    bar.appendChild(meter);
+    bar.appendChild(pstatus);
+
+    if (list == "main") {
+        main_barlist.appendChild(bar);
+    }
+
+    else if (list == "experience") {
+        experience_barlist.appendChild(bar);
+    }
+}
 
 
 // event functions
@@ -620,7 +655,6 @@ function onload() {
 
     mainloop()
 }
-
 
 // declarations set
 window.onscroll = onscrolloptimize;

@@ -1,5 +1,4 @@
-import { loadProject } from "/src/js/home.js";
-
+import { loadProject, listProgrammingLanguage } from "/src/js/home.js";
 
 // games
 loadProject("games",
@@ -98,3 +97,25 @@ loadProject("other-projects",
 "My attempt at creating my own operating system. It is a 32 bit operating system with it's own bootloader. Note: It has not been tested on real hardware so it MIGHT NOT WORK ON REAL HARDWARE. But, it works on QEMU (a virtual machine).",
 "default"
 );
+
+
+
+
+// meter bars for programming languages
+// learner, competent (30+), proficient (50+), advanced (75+), expert, master
+// main
+listProgrammingLanguage("HTML", "95", "Expert", "main")
+listProgrammingLanguage("CSS", "95", "Expert", "main")
+listProgrammingLanguage("Javascript", "90", "Expert", "main")
+
+// experience
+listProgrammingLanguage("Python", "65", "Proficient", "experience")
+listProgrammingLanguage("GDScript", "60", "Proficient", "experience")
+listProgrammingLanguage("Batch Script", "60", "Proficient", "experience")
+listProgrammingLanguage("C#", "40", "Competent", "experience")
+listProgrammingLanguage("Java", "35", "Competent", "experience")
+listProgrammingLanguage("Kotlin", "30", "Competent", "experience")
+listProgrammingLanguage("SQL", "28", "Competent", "experience")
+listProgrammingLanguage("C++", "25", "Learner", "experience")
+listProgrammingLanguage("C", "25", "Learner", "experience")
+listProgrammingLanguage("Assembly", "20", "Learner", "experience")

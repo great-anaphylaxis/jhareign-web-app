@@ -194,6 +194,12 @@
     nav > a > p {
         display: inline;
     }
+
+
+    /* barlists */
+    .barlist {
+        font-size: 1.5em;
+    }
 }
 
 
