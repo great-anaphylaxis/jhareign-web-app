@@ -55,14 +55,9 @@ let isScrollingIntoView = false;
 let main_barlist = document.querySelector('.barlist[data-type="main"]');
 let experience_barlist = document.querySelector('.barlist[data-type="experience"]');
 
-// essential utility functions
-function lerp(start, end, amount) {
-    return start * (1 - amount) + end * amount;
-}
-
-function invLerp(start, end, amount) {
-    return (amount - start) / (end - start)
-}
+// year dependencies
+let age_year = document.getElementById("age");
+let exp_year = document.getElementById("exp");
 
 
 // website "system" functions
@@ -123,6 +118,14 @@ function scrollbarRestorer() {
 
 
 // functions for use
+function lerp(start, end, amount) {
+    return start * (1 - amount) + end * amount;
+}
+
+function invLerp(start, end, amount) {
+    return (amount - start) / (end - start)
+}
+
 function createStars(amount, fieldSize, bound) {
     let geometry = new THREE.SphereGeometry(0.25, 4, 4);
     let material = new THREE.MeshBasicMaterial({color: "white"});
@@ -380,6 +383,24 @@ export function listProgrammingLanguage(name, value, status, list) {
     else if (list == "experience") {
         experience_barlist.appendChild(bar);
     }
+}
+
+// e.g. "01/12/2009"
+function updateYear(givenYear) {
+    let startingYear = new Date(givenYear);
+    let month_diff = Date.now() - startingYear.getTime();  
+    let age_dt = new Date(month_diff);
+    let year = age_dt.getUTCFullYear();
+    let ageYear = Math.abs(year - 1970);
+
+    return ageYear
+}
+
+function updateYearDependencies() {
+    age_year.innerText = updateYear("01/12/2009");
+
+    // construct 3 account creation: https://www.construct.net/en/users/759460/jhareign-solidum
+    exp_year.innerText = updateYear("06/04/2020");
 }
 
 
@@ -644,6 +665,8 @@ function mainloop() {
 }
 
 function onload() {
+    updateYearDependencies();
+
     createLights()
     createStars(5000, 1000, 80)
     loadSceneModel()

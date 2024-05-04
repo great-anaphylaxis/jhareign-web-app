@@ -455,6 +455,11 @@ main {
     font-size: 4vw;
 }
 
+#s13 > p > a {
+    text-decoration: none;
+    color: var(--color-text-semi-contrast);
+}
+
 
 /* redirect section */
 #r {
