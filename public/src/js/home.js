@@ -29,12 +29,26 @@ let monitorContentTag;
 let rocket;
 
 // cards
-let games_cards = document.querySelector('[data-type="games"]');
-let websites_cards = document.querySelector('[data-type="websites"]');
-let otherprojects_cards = document.querySelector('[data-type="other-projects"]');
+let games_cards = document.querySelector('.cards[data-type="games"]');
+let websites_cards = document.querySelector('.cards[data-type="websites"]');
+let otherprojects_cards = document.querySelector('.cards[data-type="other-projects"]');
+
+// scroll locations
+let home_section = document.querySelector('[data-type="home"]');
+let projects_section = document.querySelector('[data-type="projects"]');
+let contacts_section = document.querySelector('[data-type="contacts"]');
 
 // nav
 let nav = document.querySelector('nav');
+
+// models loaded
+let loaded = {
+    scene: false,
+    rocket: false
+}
+
+// scrolling into view
+let isScrollingIntoView = false;
 
 // essential utility functions
 function lerp(start, end, amount) {
@@ -134,13 +148,16 @@ function loadSceneModel() {
         gltf.scene.scale.y = 0.5;
         gltf.scene.scale.z = 0.5;
         scene.add(gltf.scene);
+
+        loaded.scene = true;
+        oncompletelyloaded();
     })
 }
 
 function loadRocketModel() {
-    let laoder = new GLTFLoader();
+    let loader = new GLTFLoader();
 
-    laoder.load('/src/3d models/ship.glb', (gltf) => {
+    loader.load('/src/3d models/ship.glb', (gltf) => {
         let obj = gltf.scene;
         obj.scale.x = 3;
         obj.scale.y = 3;
@@ -153,6 +170,9 @@ function loadRocketModel() {
 
         scene.add(gltf.scene);
         rocket = gltf.scene;
+
+        loaded.rocket = true;
+        oncompletelyloaded();
     })
 }
 
@@ -281,6 +301,46 @@ export function loadProject(type, name, title, description, link="default") {
     }
 }
 
+function setScrollAccordingToHash() {
+    let hash = window.location.hash.slice(1);
+
+    if (hash == "home") {
+        scrollIntoView(home_section, true)
+    }
+
+    else if (hash == "projects") {
+        scrollIntoView(projects_section, true)
+    }
+
+    else if (hash == "contacts") {
+        scrollIntoView(contacts_section, true)
+    }
+}
+
+function scrollIntoView(element, removeHash) {
+    let options = {
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'center'
+    };
+
+    element.scrollIntoView(options);
+    isScrollingIntoView = true;
+
+    if (removeHash == true) {
+        history.pushState("", document.title, window.location.pathname
+        + window.location.search)
+    }
+}
+
+function showNavBar() {
+    nav.style.animation = "0.4s ease 0s 1 normal forwards running navbar-show";
+}
+
+function hideNavBar() {
+    nav.style.animation = "0.4s ease 0s 1 normal forwards running navbar-hide";
+}
+
 
 
 // event functions
@@ -305,11 +365,31 @@ function onresize() {
 
 function onscrollnav() {
     if (t > pastT) {
-        nav.style.animation = "0.4s ease 0s 1 normal forwards running navbar-hide";
+        hideNavBar()
     }
 
     else {
-        nav.style.animation = "0.4s ease 0s 1 normal forwards running navbar-show";
+        showNavBar()
+    }
+}
+
+function oncompletelyloaded() {
+    for (const [key, value] of Object.entries(loaded)) {
+        if (value == false) {
+            return;
+        }
+    }
+
+    setScrollAccordingToHash()
+}
+
+function onscrollend() {
+    if (isScrollingIntoView == true) {
+        isScrollingIntoView = false;
+
+        let t = setTimeout(() => {
+            showNavBar()
+        }, 100)
     }
 }
 
@@ -524,8 +604,6 @@ function mainloop() {
 }
 
 function onload() {
-    mainloop()
-
     createLights()
     createStars(5000, 1000, 80)
     loadSceneModel()
@@ -539,10 +617,14 @@ function onload() {
     onresize()
 
     initCameraPosition()
+
+    mainloop()
 }
 
 
-// declarations (set)
-document.body.onscroll = onscrolloptimize;
-document.body.onload = onload;
-document.body.onresize = onresize;
+// declarations set
+window.onscroll = onscrolloptimize;
+window.onload = onload;
+window.onresize = onresize;
+window.onhashchange = setScrollAccordingToHash;
+window.onscrollend = onscrollend;

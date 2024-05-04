@@ -1,10 +1,13 @@
 /* prerequisite */
 :root {
     --color-text: white;
+    --color-very-light-bg: rgb(131, 131, 131);
     --color-light-bg: rgba(75, 75, 75, 0.911);
     --color-semi-bg: rgba(15, 15, 15, 0.911);
     --color-almost-bg: rgba(8, 8, 8, 0.95);
     --color-text-semi-contrast: rgb(189, 255, 186);
+    --color-contrast-bg: rgb(7, 219, 0);
+    --color-contrast-dark-bg: rgb(1, 32, 0);
 }
 
 
@@ -148,6 +151,7 @@ main {
     max-width: 80vw;
     max-height: 60vh;
     margin: 1em;
+    user-select: none;
 }
 
 
@@ -307,6 +311,7 @@ main {
     padding: 2em 0em;
     gap: 1em;
     justify-content: space-around;
+    user-select: none;
 }
 
 .cards > a {
@@ -322,7 +327,7 @@ main {
 
 .card > img {
     width: 80vw;
-    height: 40vh;
+    height: 30vh;
     object-fit: contain;
 
     background-color: var(--color-almost-bg);
@@ -331,6 +336,18 @@ main {
 .card > div {
     width: 80vw;
     padding: 1em;
+}
+
+.cards::-webkit-scrollbar {
+    color: var(--color-text)
+}
+
+.cards::-webkit-scrollbar-track {
+    background: linear-gradient(var(--color-very-light-bg), var(--color-almost-bg));
+}
+
+.cards::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--color-contrast-dark-bg), var(--color-contrast-bg))
 }
 
 
@@ -470,6 +487,7 @@ nav {
     display: flex;
     z-index: 10;
     border: 1px solid var(--color-text);
+    user-select: none;
 }
 
 nav > a {
@@ -479,6 +497,7 @@ nav > a {
     align-items: center;
     gap: 1em;
     cursor: pointer;
+    text-decoration: none;
 }
 
 nav > a:hover {
@@ -494,4 +513,26 @@ nav > a > img {
 nav > a > p {
     display: none;
     font-size: 1em;
+}
+
+
+/* scrollbar */
+::-webkit-scrollbar {
+    color: var(--color-text)
+}
+
+::-webkit-scrollbar-track {
+    background: linear-gradient(0.25turn, var(--color-very-light-bg), var(--color-almost-bg));
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(0.25turn, var(--color-contrast-dark-bg), var(--color-contrast-bg))
+}
+
+
+/* text select */
+::selection {
+    background-color: var(--color-contrast-bg);
+    color: var(--color-contrast-dark-bg);
+    font-family: "Arial";
 }
