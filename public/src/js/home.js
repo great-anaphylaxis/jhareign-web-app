@@ -35,6 +35,7 @@ let otherprojects_cards = document.querySelector('.cards[data-type="other-projec
 
 // scroll locations
 let home_section = document.querySelector('[data-type="home"]');
+let programming_section = document.querySelector('[data-type="programming"]');
 let projects_section = document.querySelector('[data-type="projects"]');
 let contacts_section = document.querySelector('[data-type="contacts"]');
 
@@ -310,6 +311,10 @@ function setScrollAccordingToHash() {
 
     if (hash == "home") {
         scrollIntoView(home_section, true)
+    }
+
+    else if (hash == "programming") {
+        scrollIntoView(programming_section, true)
     }
 
     else if (hash == "projects") {
