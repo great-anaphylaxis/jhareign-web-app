@@ -332,6 +332,10 @@ main {
     background-color: var(--color-light-bg);
 }
 
+.cards > a:hover .card > img {
+    background-color: var(--color-very-light-bg);
+}
+
 .card > img {
     width: 80vw;
     height: 30vh;
