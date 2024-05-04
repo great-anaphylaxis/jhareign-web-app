@@ -3,6 +3,10 @@ import * as THREE from "/src/js/lib/three.js";
 import * as TWEEN from "/src/js/lib/tween.js";
 import { GLTFLoader } from "/src/js/lib/gltf_loader.js";
 import { OrbitControls } from "/src/js/lib/orbit_controls.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
+
+
 
 // Three.js essentials
 const scene = new THREE.Scene();
@@ -12,6 +16,19 @@ const renderer = new THREE.WebGLRenderer({
 });
 //const controls = new OrbitControls( camera, renderer.domElement )
 
+// Firebase and Analytics
+const firebaseConfig = {
+    apiKey: "AIzaSyC4-7CeyYPm4Ta_kfQy9buf9020HgUL7uE",
+    authDomain: "jhareign-web-app.firebaseapp.com",
+    projectId: "jhareign-web-app",
+    storageBucket: "jhareign-web-app.appspot.com",
+    messagingSenderId: "239540990524",
+    appId: "1:239540990524:web:39f928b35c82f3519f8939",
+    measurementId: "G-GE7SK2MPY3"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 // for optimizing scrolling
 let ticking = false;
@@ -313,18 +330,22 @@ function setScrollAccordingToHash() {
     let hash = window.location.hash.slice(1);
 
     if (hash == "home") {
+        log("#home")
         scrollIntoView(home_section, true)
     }
 
     else if (hash == "programming") {
+        log("#programming")
         scrollIntoView(programming_section, true)
     }
 
     else if (hash == "projects") {
+        log("#projects")
         scrollIntoView(projects_section, true)
     }
 
     else if (hash == "contacts") {
+        log("#contacts")
         scrollIntoView(contacts_section, true)
     }
 }
@@ -385,6 +406,10 @@ export function listProgrammingLanguage(name, value, status, list) {
     }
 }
 
+function log(eventName) {
+    logEvent(analytics, eventName);
+}
+
 // e.g. "01/12/2009"
 function updateYear(givenYear) {
     let startingYear = new Date(givenYear);
@@ -442,6 +467,7 @@ function oncompletelyloaded() {
     }
 
     setScrollAccordingToHash()
+    log("completely_loaded")
 }
 
 function onscrollend() {
