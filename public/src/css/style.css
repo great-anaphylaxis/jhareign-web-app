@@ -44,7 +44,7 @@ canvas {
 
 [data-main-name="main"] {
     position: absolute;
-    height: 22150px;
+    height: 22125px;
     top: 0;
     left: 0;
     right: 0;
@@ -546,6 +546,11 @@ canvas {
 
 #s14 > a:hover {
     text-decoration: underline;
+}
+
+#s14 > .end {
+    margin: 0;
+    font-size: 3vw;
 }
 
 

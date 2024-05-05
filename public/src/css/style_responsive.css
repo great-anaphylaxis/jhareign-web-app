@@ -196,6 +196,10 @@
         font-size: 1.35em;
     }
 
+    #s14 > .end {
+        font-size: 1.15em;
+    }
+
     /* redirect section */
     #r {
         max-width: 65vw;

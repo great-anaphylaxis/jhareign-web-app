@@ -74,6 +74,7 @@ let experience_barlist = document.querySelector('.barlist[data-type="experience"
 // year dependencies
 let age_year = document.getElementById("age");
 let exp_year = document.getElementById("exp");
+let copyright_year = document.getElementById("copyright");
 
 // main elements
 let mains = document.querySelectorAll("[data-main-name]");
@@ -427,11 +428,16 @@ function updateYear(givenYear) {
     return ageYear
 }
 
+function getCurrentYear() {
+    return new Date().getFullYear()
+}
+
 function updateYearDependencies() {
     age_year.innerText = updateYear("01/12/2009");
 
     // construct 3 account creation: https://www.construct.net/en/users/759460/jhareign-solidum
     exp_year.innerText = updateYear("06/04/2020");
+    copyright_year.innerText = getCurrentYear();
 }
 
 function showMain(name) {
