@@ -7,7 +7,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/fireba
 import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
 
 
-
 // Three.js essentials
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 300);
@@ -81,7 +80,6 @@ let mains = document.querySelectorAll("[data-main-name]");
 
 // command line
 let command_line = document.querySelector("[data-main-name='command-line']")
-
 
 // website "system" functions
 function threeScroll(min, max, func) {
@@ -171,7 +169,7 @@ function createStars(amount, fieldSize, bound) {
     }
 }
 
-function loadSceneModel() {
+export function loadSceneModel() {
     let loader = new GLTFLoader();
 
     loader.load('/src/3d models/scene.glb', (gltf) => {
@@ -186,7 +184,7 @@ function loadSceneModel() {
     })
 }
 
-function loadRocketModel() {
+export function loadRocketModel() {
     let loader = new GLTFLoader();
 
     loader.load('/src/3d models/ship.glb', (gltf) => {
@@ -450,7 +448,7 @@ function showMain(name) {
     }
 }
 
-function msg(line) {
+export function msg(line) {
     let p = document.createElement("p");
     p.innerText = line;
 
@@ -510,11 +508,6 @@ function onscrollend() {
         }, 100)
     }
 }
-
-function onDOMContentLoaded() {
-    msg("Basic resources loaded");
-}
-
 
 // very important functions
 function onscroll() {
@@ -726,13 +719,11 @@ function mainloop() {
 }
 
 function onload() {
-    msg("Loading heavy resources...");
+    msg("Setting up website...")
     updateYearDependencies();
 
     createLights()
     createStars(5000, 1000, 80)
-    loadSceneModel()
-    loadRocketModel()
     createMonitorScreen()
     changeMonitorText("C:\\Jhareign>webapp run", "initial")
 
@@ -752,4 +743,3 @@ window.onload = onload;
 window.onresize = onresize;
 window.onhashchange = setScrollAccordingToHash;
 window.onscrollend = onscrollend;
-window.addEventListener("DOMContentLoaded", onDOMContentLoaded);

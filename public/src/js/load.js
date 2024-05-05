@@ -1,4 +1,10 @@
-import { loadProject, listProgrammingLanguage } from "/src/js/home.js";
+import { loadProject, listProgrammingLanguage, loadSceneModel, loadRocketModel, msg } from "/src/js/home.js";
+
+
+msg("Loading heavy resources...");
+
+loadSceneModel()
+loadRocketModel()
 
 // games
 loadProject("games",
