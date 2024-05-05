@@ -477,6 +477,12 @@ function onresize() {
 }
 
 function onscrollnav() {
+    let deltaT = Math.abs(t - pastT);
+
+    if (deltaT < 4) {
+        return;
+    }
+
     if (t > pastT) {
         hideNavBar()
     }
