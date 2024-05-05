@@ -91,6 +91,7 @@ canvas {
     padding: 2vw;
     
     border-radius: 3vw;
+    animation: 1.5s ease 0s 1 normal forwards running opacity-show;
 }
 
 #s1 > h1 {
