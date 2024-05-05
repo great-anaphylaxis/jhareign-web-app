@@ -79,6 +79,9 @@ let exp_year = document.getElementById("exp");
 // main elements
 let mains = document.querySelectorAll("[data-main-name]");
 
+// command line
+let command_line = document.querySelector("[data-main-name='command-line']")
+
 
 // website "system" functions
 function threeScroll(min, max, func) {
@@ -169,15 +172,16 @@ function createStars(amount, fieldSize, bound) {
 }
 
 function loadSceneModel() {
-    let laoder = new GLTFLoader();
+    let loader = new GLTFLoader();
 
-    laoder.load('/src/3d models/scene.glb', (gltf) => {
+    loader.load('/src/3d models/scene.glb', (gltf) => {
         gltf.scene.scale.x = 0.5;
         gltf.scene.scale.y = 0.5;
         gltf.scene.scale.z = 0.5;
         scene.add(gltf.scene);
 
         loaded.scene = true;
+        msg("Loaded main scene object");
         oncompletelyloaded();
     })
 }
@@ -200,6 +204,7 @@ function loadRocketModel() {
         rocket = gltf.scene;
 
         loaded.rocket = true;
+        msg("Loaded rocket object");
         oncompletelyloaded();
     })
 }
@@ -431,18 +436,25 @@ function updateYearDependencies() {
     exp_year.innerText = updateYear("06/04/2020");
 }
 
-export function showMain(name) {
+function showMain(name) {
     for (let i = 0; i < mains.length; i++) {
         let m = mains[i];
 
         if (m.dataset.mainName == name) {
-            m.removeAttribute("hidden")
+            m.style.display = "block"
         }
 
-        else if (m.getAttribute("hidden") == null) {
-            m.setAttribute("hidden", "")
+        else if (m.style.display = "block") {
+            m.style.display = "none";
         }
     }
+}
+
+function msg(line) {
+    let p = document.createElement("p");
+    p.innerText = line;
+
+    command_line.appendChild(p);
 }
 
 
@@ -485,6 +497,8 @@ function oncompletelyloaded() {
 
     setScrollAccordingToHash()
     log("completely_loaded")
+    msg("Loading finished");
+    showMain("main")
 }
 
 function onscrollend() {
@@ -495,6 +509,10 @@ function onscrollend() {
             showNavBar()
         }, 100)
     }
+}
+
+function onDOMContentLoaded() {
+    msg("Basic resources loaded");
 }
 
 
@@ -708,6 +726,7 @@ function mainloop() {
 }
 
 function onload() {
+    msg("Loading heavy resources...");
     updateYearDependencies();
 
     createLights()
@@ -733,3 +752,4 @@ window.onload = onload;
 window.onresize = onresize;
 window.onhashchange = setScrollAccordingToHash;
 window.onscrollend = onscrollend;
+window.addEventListener("DOMContentLoaded", onDOMContentLoaded);
