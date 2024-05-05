@@ -44,7 +44,7 @@ canvas {
 
 [data-main-name="main"] {
     position: absolute;
-    height: 22000px;
+    height: 22150px;
     top: 0;
     left: 0;
     right: 0;
@@ -379,6 +379,14 @@ canvas {
     padding: 1em;
 }
 
+.card > div > h2 {
+    font-size: 5vw;
+}
+
+.card > div > p {
+    font-size: 3.5vw;
+}
+
 .cards::-webkit-scrollbar {
     color: var(--color-text)
 }
@@ -464,7 +472,7 @@ canvas {
 /* contacts */
 #s13 {
     position: absolute;
-    top: 21500px;
+    top: 20000px;
     left: 0;
     right: 0;
 
@@ -492,6 +500,52 @@ canvas {
 #s13 > p > a {
     text-decoration: none;
     color: var(--color-text-semi-contrast);
+}
+
+#s13 > p > a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* history of website */
+#s14 {
+    position: absolute;
+    top: 21500px;
+    left: 0;
+    right: 0;
+
+    background: var(--color-semi-bg);
+    color: var(--color-text);
+
+    max-width: 85vw;
+    margin: auto;
+    text-align: center;
+    padding: 2vw;
+    
+    border-radius: 1em;
+}
+
+#s14 > h1 {
+    margin: 0;
+    font-size: 6vw;
+}
+
+#s14 > p {
+    margin: 0;
+    font-size: 4vw;
+}
+
+#s14 > a {
+    margin: 0;
+    font-size: 4vw;
+    display: block;
+    text-decoration: none;
+    color: var(--color-text-semi-contrast);
+}
+
+#s14 > a:hover {
+    text-decoration: underline;
 }
 
 

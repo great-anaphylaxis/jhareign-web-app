@@ -22,7 +22,7 @@
     }
 
     #s2 > p {
-        font-size: 1.5em;
+        font-size: 1.35em;
     }
 
     /* hobbies */
@@ -35,7 +35,7 @@
     }
 
     #s3 > p {
-        font-size: 1.5em;
+        font-size: 1.35em;
     }
 
     /* picture of me */
@@ -44,7 +44,7 @@
     }
 
     #s4 > p {
-        font-size: 1.5em;
+        font-size: 1.35em;
     }
 
     #s4 > img {
@@ -61,7 +61,7 @@
     }
 
     #s5 > p {
-        font-size: 1.5em;
+        font-size: 1.35em;
     }
 
 
@@ -75,7 +75,7 @@
     }
 
     #s6 > p {
-        font-size: 1.5em;
+        font-size: 1.35em;
     }
 
     /* school life */
@@ -88,7 +88,7 @@
     }
 
     #s7 > p {
-        font-size: 1.5em;
+        font-size: 1.35em;
     }
 
     
@@ -102,7 +102,7 @@
     }
 
     #s8 > p {
-        font-size: 1.5em;
+        font-size: 1.35em;
     }
 
 
@@ -116,7 +116,7 @@
     }
 
     #s9 > p {
-        font-size: 1.5em;
+        font-size: 1.35em;
     }
 
 
@@ -127,6 +127,14 @@
 
     .card > div {
         width: 50vw;
+    }
+
+    .card > div > h2 {
+        font-size: 2em;
+    }
+
+    .card > div > p {
+        font-size: 1.35em;
     }
 
 
@@ -167,9 +175,26 @@
     }
 
     #s13 > p {
-        font-size: 1.5em;
+        font-size: 1.35em;
     }
 
+
+    /* history of website */
+    #s14 {
+        max-width: 65vw;
+    }
+
+    #s14 > h1 {
+        font-size: 2.5em;
+    }
+
+    #s14 > p {
+        font-size: 1.35em;
+    }
+
+    #s14 > a {
+        font-size: 1.35em;
+    }
 
     /* redirect section */
     #r {
@@ -181,7 +206,7 @@
     }
 
     #r > p {
-        font-size: 1.5em;
+        font-size: 1.35em;
     }
 
 
@@ -198,7 +223,7 @@
 
     /* barlists */
     .barlist {
-        font-size: 1.5em;
+        font-size: 1.35em;
     }
 }
 
