@@ -76,6 +76,9 @@ let experience_barlist = document.querySelector('.barlist[data-type="experience"
 let age_year = document.getElementById("age");
 let exp_year = document.getElementById("exp");
 
+// main elements
+let mains = document.querySelectorAll("[data-main-name]");
+
 
 // website "system" functions
 function threeScroll(min, max, func) {
@@ -426,6 +429,20 @@ function updateYearDependencies() {
 
     // construct 3 account creation: https://www.construct.net/en/users/759460/jhareign-solidum
     exp_year.innerText = updateYear("06/04/2020");
+}
+
+export function showMain(name) {
+    for (let i = 0; i < mains.length; i++) {
+        let m = mains[i];
+
+        if (m.dataset.mainName == name) {
+            m.removeAttribute("hidden")
+        }
+
+        else if (m.getAttribute("hidden") == null) {
+            m.setAttribute("hidden", "")
+        }
+    }
 }
 
 

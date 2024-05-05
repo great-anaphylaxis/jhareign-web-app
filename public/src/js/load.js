@@ -1,4 +1,7 @@
-import { loadProject, listProgrammingLanguage } from "/src/js/home.js";
+import { loadProject, listProgrammingLanguage, showMain } from "/src/js/home.js";
+
+
+showMain("command-line")
 
 // games
 loadProject("games",
