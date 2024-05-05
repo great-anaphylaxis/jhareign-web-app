@@ -617,15 +617,15 @@ nav > a > p {
 
 
 /* scrollbar */
-*::-webkit-scrollbar {
+::-webkit-scrollbar {
     color: var(--color-text)
 }
 
-*::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     background: linear-gradient(0.25turn, var(--color-very-light-bg), var(--color-almost-bg));
 }
 
-*::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background: linear-gradient(0.25turn, var(--color-contrast-dark-bg), var(--color-contrast-bg))
 }
 
