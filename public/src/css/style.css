@@ -28,6 +28,7 @@
 body {
     background-color: black;
     position: fixed;
+    height: 100%;
 }
 
 canvas {
