@@ -224,6 +224,11 @@
         display: inline;
     }
 
+    nav > a > img {
+        width: 32px;
+        height: 32px;
+    }
+
 
     /* barlists */
     .barlist {
@@ -247,6 +252,26 @@
     }
     100% {
         top: -100px;
+    }
+}
+
+@keyframes cli-show {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        display: flex;
+    }
+}
+
+@keyframes cli-hide {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        display: none;
     }
 }
 

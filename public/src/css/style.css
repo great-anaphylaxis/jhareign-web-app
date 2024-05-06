@@ -588,16 +588,17 @@ nav {
     position: fixed;
     width: 100%;
     color: var(--color-text);
-    background-color: black;
+    background-color: var(--color-bg);
     display: flex;
     z-index: 5;
     border: 1px solid var(--color-text);
     user-select: none;
+    box-sizing: border-box;
 }
 
 nav > a {
     padding: 1em 1em;
-    border: 1px solid var(--color-text);
+    border-right: 1px solid var(--color-text);
     display: flex;
     align-items: center;
     gap: 1em;
@@ -609,15 +610,63 @@ nav > a:hover {
     background-color: var(--color-light-bg)
 }
 
+nav > a.right {
+    margin-left: auto;
+    border-right: none;
+    border-left: 1px solid var(--color-text);
+}
+
 nav > a > img {
-    width: 32px;
-    height: 32px;
+    width: 25px;
+    height: 25px;
     filter: invert(1);
 }
 
 nav > a > p {
     display: none;
     font-size: 1em;
+}
+
+nav > div {
+    display: flex;
+    box-sizing: border-box;
+    position: absolute;
+    width: calc(100% + 2px);
+    height: 1.5em;
+    top: 100%;
+    left: -1px;
+    margin: 0;
+    padding: 0;
+}
+
+nav > div > input {
+    width: 100%;
+    box-sizing: border-box;
+    height: 100%;
+    padding-block: 0;
+    padding-inline: 0.5em;
+    border: 1px solid var(--color-text);
+    background-color: var(--color-bg);
+    color: var(--color-cmd-text);
+}
+
+nav > div > input:focus-visible {
+    outline: none;
+}
+
+nav > div > button {
+    background-color: var(--color-bg);
+    color: var(--color-cmd-text);
+    padding-block: 0;
+    padding-inline: 0;
+    padding: 0 1em;
+    border: 1px solid var(--color-text);
+    border-left: none;
+    cursor: pointer;
+}
+
+nav > div > button:hover {
+    background-color: var(--color-light-bg);
 }
 
 
@@ -631,7 +680,8 @@ nav > a > p {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(0.25turn, var(--color-contrast-dark-bg), var(--color-contrast-bg))
+    background: linear-gradient(0.25turn, var(--color-contrast-dark-bg), var(--color-contrast-bg));
+    cursor: pointer;
 }
 
 

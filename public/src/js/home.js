@@ -82,6 +82,15 @@ let mains = document.querySelectorAll("[data-main-name]");
 // command line
 let command_line = document.querySelector("[data-main-name='command-line']")
 
+// CLI
+let cli = document.querySelector("nav > div");
+let isCLIActive = false;
+
+// cli image
+let cli_image = document.querySelector("img[data-type='cli']")
+let cli_image_normal = "/src/icons/command-line.webp";
+let cli_image_active = "/src/icons/command-line-active.webp";
+
 // website "system" functions
 function threeScroll(min, max, func) {
     if (min == "start") {
@@ -356,6 +365,11 @@ function setScrollAccordingToHash() {
         log("#contacts")
         scrollIntoView(contacts_section, true)
     }
+
+    else if (hash == "command-line") {
+        log("#command-line")
+        toggleCLI()
+    }
 }
 
 function scrollIntoView(element, removeHash) {
@@ -365,13 +379,23 @@ function scrollIntoView(element, removeHash) {
         inline: 'center'
     };
 
-    element.scrollIntoView(options);
     isScrollingIntoView = true;
+    element.scrollIntoView(options);
 
     if (removeHash == true) {
-        history.pushState("", document.title, window.location.pathname
+        history.replaceState("", document.title, window.location.pathname
         + window.location.search)
     }
+}
+
+function scrollToPosition(top) {
+    let options = {
+        top: top,
+        behavior: 'smooth'
+    }
+
+    isScrollingIntoView = true;
+    scrollTo(options);
 }
 
 function showNavBar() {
@@ -460,6 +484,39 @@ export function msg(line) {
     p.innerText = line;
 
     command_line.appendChild(p);
+}
+
+function toggleCLI() {
+    history.replaceState("", document.title, window.location.pathname
+    + window.location.search)
+
+    if (isCLIActive == true) {
+        isCLIActive = false;
+        hideCLI();
+    }
+
+    else {
+        isCLIActive = true;
+        showCLI();
+    }
+}
+
+function hideCLI() {
+    cli_image.src = cli_image_normal;
+    cli_image.style.filter = "invert(1)";
+
+    cli.style.animation = "0.4s ease 0s 1 normal forwards running cli-hide";
+}
+
+function showCLI() {
+    if (t < 2525 || t > 2990) {
+        scrollToPosition(2850, true);
+    }
+    
+    cli_image.src = cli_image_active;
+    cli_image.style.filter = "none";
+
+    cli.style.animation = "0.4s ease 0s 1 normal forwards running cli-show";
 }
 
 
@@ -741,6 +798,8 @@ function onload() {
     changeMonitorText("C:\\Jhareign>webapp run", "initial")
 
     scrollbarRestorer()
+    toggleCLI()
+    toggleCLI()
 
     onscroll()
     onresize()
