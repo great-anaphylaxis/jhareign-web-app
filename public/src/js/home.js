@@ -84,12 +84,20 @@ let command_line = document.querySelector("[data-main-name='command-line']")
 
 // CLI
 let cli = document.querySelector("nav > div");
+let cli_input = document.querySelector("nav > div > input");
+let cli_send = document.querySelector("nav > div > button");
+let cli_hasSend = false;
 let isCLIActive = false;
 
 // cli image
 let cli_image = document.querySelector("img[data-type='cli']")
 let cli_image_normal = "/src/icons/command-line.webp";
 let cli_image_active = "/src/icons/command-line-active.webp";
+
+// cli text
+let cli_user = "C:\\User>"
+let initial_cli_text = "Welcome! Type help for commands\n\n" + cli_user;
+let cli_text = ["Welcome! Type help for commands", "", cli_user];
 
 // website "system" functions
 function threeScroll(min, max, func) {
@@ -281,6 +289,10 @@ function createMonitorScreen() {
 }
 
 function changeMonitorText(text, contentTag) {
+    if (cli_hasSend == true && contentTag != 'cli') {
+        return
+    }
+
     monitor.fillStyle = 'black';
     monitor.fillRect(0, 0, monitor.canvas.width, monitor.canvas.height);
 
@@ -519,6 +531,28 @@ function showCLI() {
     cli.style.animation = "0.4s ease 0s 1 normal forwards running cli-show";
 }
 
+function sendCommand() {
+    let command = cli_input.value;
+
+    cli_hasSend = true;
+    cout(command)
+}
+
+function cout(message) {
+    cli_text.push(message);
+    updateCLI();
+}
+
+function cin() {
+    cli_text[cli_text.length - 1] = cli_user + cli_input.value;
+    updateCLI()
+}
+
+function updateCLI() {
+    let linemessage = cli_text.join('\n');
+    changeMonitorText(linemessage, "cli");
+}
+
 
 // event functions
 function onscrolloptimize() {
@@ -598,7 +632,7 @@ function onscroll() {
     // zoom to computer
     threeScroll(500, 3000, (s) => {
         if (monitorContentTag != "initial") {
-            changeMonitorText("C:\\Jhareign>webapp run", "initial")
+            changeMonitorText(initial_cli_text, "initial")
         }
 
         tweenScroll(s, 22, 22, camera.position.x, e => camera.position.x = e.val)
@@ -633,7 +667,7 @@ function onscroll() {
     threeScroll(5000, 6500, (s) => {
         if (monitorContentTag != "programming1") {
             changeMonitorText(
-                "C:\\Jhareign>git add .", "programming1")
+                cli_user + "git add .", "programming1")
         }
 
         tweenScroll(s, 15, 22, camera.position.x, e => camera.position.x = e.val)
@@ -648,8 +682,8 @@ function onscroll() {
     threeScroll(6500, 8000, (s) => {
         if (monitorContentTag != "programming2") {
             changeMonitorText(
-                "C:\\Jhareign>git add .\n\n" + 
-                "C:\\Jhareign>git commit -m Final commit", "programming2")
+                cli_user + "git add .\n\n" + 
+                cli_user + "git commit -m Final commit", "programming2")
         }
 
         tweenScroll(s, 21, 21, camera.position.x, e => camera.position.x = e.val)
@@ -664,8 +698,8 @@ function onscroll() {
     threeScroll(8000, 8500, (s) => {
         if (monitorContentTag != "programming3") {
             changeMonitorText(
-                "C:\\Jhareign>git add .\n\n" + 
-                "C:\\Jhareign>git commit -m Final commit\n" +
+                cli_user + "git add .\n\n" + 
+                cli_user + "git commit -m Final commit\n" +
                 "[master 3a91d45] Final commit\n" +
                 "3 files changed, 48 insertions(+), 3 deletions(-)", "programming3")
         }
@@ -675,11 +709,11 @@ function onscroll() {
     threeScroll(8500, 9000, (s) => {
         if (monitorContentTag != "programming4") {
             changeMonitorText(
-                "C:\\Jhareign>git add .\n\n" + 
-                "C:\\Jhareign>git commit -m Final commit\n" +
+                cli_user + "git add .\n\n" + 
+                cli_user + "git commit -m 'Final commit'\n" +
                 "[master 3a91d45] Final commit\n" +
                 "3 files changed, 48 insertions(+), 3 deletions(-)\n\n" +
-                "C:\\Jhareign>git push -u origin master", "programming4")
+                cli_user + "git push -u origin master", "programming4")
         }
     })
 
@@ -755,7 +789,7 @@ function onscroll() {
     threeScroll(18000, 19000, (s) => {
         if (monitorContentTag != "contacts") {
             changeMonitorText(
-                "C:\\Jhareign>firebase deploy", "contacts")
+                cli_user + "firebase deploy", "contacts")
         }
 
         tweenScroll(s, 300, 22, camera.position.x, e => camera.position.x = e.val)
@@ -795,7 +829,7 @@ function onload() {
     createLights()
     createStars(5000, 1000, 80)
     createMonitorScreen()
-    changeMonitorText("C:\\Jhareign>webapp run", "initial")
+    changeMonitorText(initial_cli_text, "initial")
 
     scrollbarRestorer()
     toggleCLI()
@@ -815,3 +849,5 @@ window.onload = onload;
 window.onresize = onresize;
 window.onhashchange = setScrollAccordingToHash;
 window.onscrollend = onscrollend;
+
+cli_input.addEventListener("input", cin)
