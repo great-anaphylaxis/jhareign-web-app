@@ -305,6 +305,7 @@ export function loadProject(type, name, title, description, link="default") {
 
     let img = document.createElement('img');
     img.src = "/src/images/projects/" + name + ".webp";
+    img.alt = "Image of the " + name + " project";
     c.appendChild(img);
 
     let div = document.createElement('div');
