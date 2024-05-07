@@ -18,6 +18,9 @@
 
     --color-bg: rgb(0, 0, 0);
     --color-cmd-text: rgb(0, 255, 0);
+
+    --pointer: url("/src/icons/pointer.png");
+    --cursor: url("/src/icons/cursor.png");
 }
 
 
@@ -30,6 +33,7 @@
 
 body {
     background-color: var(--color-bg);
+    cursor: var(--cursor), auto;
 }
 
 canvas {
@@ -65,6 +69,10 @@ canvas {
     background-color: var(--color-bg);
     color: var(--color-cmd-text);
     padding: 0em 0.25em;
+}
+
+a {
+    cursor: var(--pointer), pointer;
 }
 
 
@@ -356,6 +364,7 @@ canvas {
     background-color: var(--color-semi-bg);
     border-radius: 2em;
     padding: 0.5em 0;
+    cursor: var(--pointer), pointer;
 }
 
 .cards > a:hover {
@@ -500,6 +509,7 @@ canvas {
 #s13 > p > a {
     text-decoration: none;
     color: var(--color-text-semi-contrast);
+    cursor: var(--pointer), pointer;
 }
 
 #s13 > p > a:hover {
@@ -542,6 +552,7 @@ canvas {
     display: block;
     text-decoration: none;
     color: var(--color-text-semi-contrast);
+    cursor: var(--pointer), pointer;
 }
 
 #s14 > a:hover {
@@ -602,7 +613,7 @@ nav > a {
     display: flex;
     align-items: center;
     gap: 1em;
-    cursor: pointer;
+    cursor: var(--pointer), pointer;
     text-decoration: none;
 }
 
@@ -666,7 +677,7 @@ nav > div > button {
     padding: 0 1em;
     border: 1px solid var(--color-text);
     border-left: none;
-    cursor: pointer;
+    cursor: var(--pointer), pointer;
 }
 
 nav > div > button:hover {
@@ -685,7 +696,7 @@ nav > div > button:hover {
 
 ::-webkit-scrollbar-thumb {
     background: linear-gradient(0.25turn, var(--color-contrast-dark-bg), var(--color-contrast-bg));
-    cursor: pointer;
+    cursor: var(--pointer), pointer;
 }
 
 
