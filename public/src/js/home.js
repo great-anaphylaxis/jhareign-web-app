@@ -102,6 +102,50 @@ let cli_text = ["Welcome! Type help for commands", "", cli_user];
 let cli_activeline = 2;
 let cli_linelength = 44;
 let cli_length = 24;
+let cli_color = "green";
+let cli_backgroundcolor = "black";
+
+// available command line colors
+let available_colors = [
+    "red", "orange", "yellow", "green", "blue", "violet", "white",
+    "darkred", "darkorange", "brown", "darkgreen", "darkblue", "darkviolet", "black"
+]
+
+// help command responses
+let help_res = {
+    help: {
+        description: "Provides information for commands",
+        syntax: "help [command]",
+        parameters: {
+            command: "Displays information of that command"
+        }
+    },
+
+    cls: {
+        description: "Clears command line"
+    },
+
+    color: {
+        description: "Changes console color",
+        syntax: "color [text] [background]",
+        additional_description: [
+            "Available colors:",
+            "red            darkred",
+            "orange         darkorange",
+            "yellow         brown",
+            "green          darkgreen",
+            "blue           darkblue",
+            "violet         darkviolet",
+            "white          black",
+            " ",
+            "Two same colors will not be displayed"
+        ],
+        parameters: {
+            text: "Changes text color",
+            background: "Changes background color"
+        }
+    }
+}
 
 // website "system" functions
 function threeScroll(min, max, func) {
@@ -297,11 +341,11 @@ function changeMonitorText(text, contentTag) {
         return
     }
 
-    monitor.fillStyle = 'black';
+    monitor.fillStyle = cli_backgroundcolor;
     monitor.fillRect(0, 0, monitor.canvas.width, monitor.canvas.height);
 
     monitor.font = '20px monospace';
-    monitor.fillStyle = 'rgb(0, 255, 0)';
+    monitor.fillStyle = cli_color;
     monitor.textBaseline = "top";
 
     let arrtext = text.split('\n');
@@ -502,6 +546,8 @@ export function msg(line) {
     command_line.appendChild(p);
 }
 
+// cli related functions
+
 function toggleCLI() {
     history.replaceState("", document.title, window.location.pathname
     + window.location.search)
@@ -542,17 +588,34 @@ function showCLI() {
 }
 
 function sendCommand() {
+    let [command, args] = getCommandParts(cli_input.value)
+
     cli_input.value = "";
 
     cli_hasSend = true;
-    cli_text.push(cli_user + cli_caret);
-    updateCLI(true);
+
+    if (command == "help") {
+        command_help(args)
+    }
+
+    if (command == "cls") {
+        command_cls(args)
+    }
+
+    if (command == "color") {
+        command_color(args)
+    }
+
+    else {
+        cli_text.push(cli_user + cli_caret);
+    }
+
+    updateCLI(true)
 }
 
 function cin() {
     let caretPos = cli_input.selectionStart;
     cli_hasSend = true;
-
     if (caretPos == cli_input.value.length) {
         cli_text[cli_activeline] = cli_user + cli_input.value.trim() + cli_caret;
     }
@@ -565,8 +628,22 @@ function cin() {
 }
 
 function cinKey(e) {
+    if (!isCLIActive) {
+        return false;
+    }
+
     if (e.key == "Enter") {
         sendCommand()
+        return
+    }
+
+    if (e.target.tagName == "INPUT") {
+        return
+    }
+
+    if (isCharacterKeyPress(e)) {
+        cli_input.value += e.key;
+        cin()
     }
 }
 
@@ -586,16 +663,16 @@ function updateCLI(command=false) {
         }
     }
 
-    if (new_cli.length > cli_length) {
-        let diff = new_cli.length - cli_length;
-
-        new_cli = new_cli.slice(diff)
-    }
-
     if (command) {
         cli_text = new_cli;
         cli_text[cli_activeline] = cli_text[cli_activeline].replace(cli_caret, "")
         cli_activeline = cli_text.length - 1;
+    }
+    
+    if (new_cli.length > cli_length) {
+        let diff = new_cli.length - cli_length;
+
+        new_cli = new_cli.slice(diff)
     }
 
     let linemessage = new_cli.join('\n');
@@ -616,6 +693,140 @@ function chunkString(str, size) {
 function setCharAt(str, index, chr) {
     if(index > str.length-1) return str;
     return str.substring(0,index) + chr + str.substring(index+1);
+}
+
+function getCommandParts(val) {
+    let raw = val.split(' ');
+    for (let i = 0; i < raw.length; i++) {
+        if (raw[i].length == 0) {
+            raw.splice(i, 1)
+        }
+    }
+
+    let args = raw.splice(1);
+    let command = raw;
+
+    return [command, args];
+}
+
+function isCharacterKeyPress(evt) {
+    if (typeof evt.which == "undefined") {
+        return true;
+    } 
+    
+    else if (typeof evt.which == "number" && evt.which > 0) {
+        return !evt.ctrlKey && !evt.metaKey && !evt.altKey && evt.which != 8;
+    }
+    return false;
+}
+
+function cout(message) {
+    cli_text.push(message);
+    updateCLI(true)
+}
+
+// cli commands
+function command_help(args) {
+    cout(" ");
+
+    if (args.length > 0 && help_res[args[0]]) {
+        let command = help_res[args[0]];
+
+        cout(command.description);
+        cout(" ");
+
+        if (command.additional_description) {
+            for (let i = 0; i < command.additional_description.length; i++) {
+                cout(command.additional_description[i])
+            }
+
+            cout(" ");
+        }
+
+        if (command.syntax) {
+            cout(command.syntax);
+        }
+        
+        if (command.parameters) {
+            cout(" ");
+            for (const [k, v] of Object.entries(command.parameters)) {
+                cout(k + ": " + v);
+            }
+
+            cout(" ");
+        }
+    }
+
+    else {
+        cout("For more information, type help [command]");
+        cout(" ")
+
+        for (const [k, v] of Object.entries(help_res)) {
+            cout(k + ": " + v.description);
+        }
+
+        
+        cout(" ");
+    }
+
+}
+
+function command_cls(args) {
+    cli_text = [" "];
+    cli_activeline = 0;
+    changeMonitorText(cli_text[0], "cli");
+}
+
+function command_color(args) {
+    if (args.length == 0) {
+        let colors = help_res.color.additional_description;
+
+        cout(" ")
+        for (let i = 0; i < colors.length; i++) {
+            cout(colors[i])
+        }
+        cout(" ");
+        cout(" ");
+        return;
+    }
+
+    if (args[0] == args[1]) {
+        cout("Same color!");
+        cout(" ");
+        cout(" ");
+        return;
+    }
+
+    if (available_colors.includes(args[0])) {
+        cli_color = args[0];
+    }
+
+    else {
+        cout("Unknown color");
+        cout(" ");
+        cout(" ");
+        return;
+    }
+
+    if (args.length > 1 && available_colors.includes(args[1])) {
+        cli_backgroundcolor = args[1]
+    }
+
+    else if (args.length == 1) {
+        cout(" ")
+        cout(" ");
+        return;
+    }
+
+    else {
+        cout("Unknown color");
+        cout(" ");
+        cout(" ");
+        return;
+    }
+
+    cout(" ");
+    cout(" ");
 }
 
 // event functions
@@ -912,8 +1123,8 @@ window.onload = onload;
 window.onresize = onresize;
 window.onhashchange = setScrollAccordingToHash;
 window.onscrollend = onscrollend;
+window.onkeydown = cinKey;
 
 cli_input.addEventListener("input", cin)
-cli_input.addEventListener("keydown", cinKey)
 cli_input.addEventListener("keyup", cin)
 cli_send.addEventListener("click", sendCommand)
