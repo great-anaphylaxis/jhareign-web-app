@@ -454,7 +454,6 @@ function log(eventName) {
     logEvent(analytics, eventName);
 }
 
-// e.g. "01/12/2009"
 function updateYear(givenYear) {
     let startingYear = new Date(givenYear);
     let month_diff = Date.now() - startingYear.getTime();  
@@ -513,16 +512,22 @@ function toggleCLI() {
     }
 }
 
-function hideCLI() {
+function hideCLI(unanimate=false) {
     cli_image.src = cli_image_normal;
     cli_image.style.filter = "invert(1)";
 
-    cli.style.animation = "0.4s ease 0s 1 normal forwards running cli-hide";
+    if (unanimate) {
+        cli.style.animation = "0s ease 0s 1 normal forwards running cli-hide"
+    }
+
+    else {
+        cli.style.animation = "0.4s ease 0s 1 normal forwards running cli-hide";
+    }
 }
 
 function showCLI() {
     if (t < 2525 || t > 2990) {
-        scrollToPosition(2850, true);
+        scrollToPosition(2950, true);
     }
     
     cli_image.src = cli_image_active;
@@ -532,20 +537,24 @@ function showCLI() {
 }
 
 function sendCommand() {
-    let command = cli_input.value;
+    cli_input.value = "";
 
     cli_hasSend = true;
-    cout(command)
-}
-
-function cout(message) {
-    cli_text.push(message);
+    cli_text.push(cli_user);
     updateCLI();
 }
 
 function cin() {
-    cli_text[cli_text.length - 1] = cli_user + cli_input.value;
+    cli_hasSend = true;
+
+    cli_text[cli_text.length - 1] = cli_user + cli_input.value.trim();
     updateCLI()
+}
+
+function cinKey(e) {
+    if (e.key == "Enter" && cli_input.value.trim().length > 0) {
+        sendCommand()
+    }
 }
 
 function updateCLI() {
@@ -832,8 +841,7 @@ function onload() {
     changeMonitorText(initial_cli_text, "initial")
 
     scrollbarRestorer()
-    toggleCLI()
-    toggleCLI()
+    hideCLI(true)
 
     onscroll()
     onresize()
@@ -851,3 +859,5 @@ window.onhashchange = setScrollAccordingToHash;
 window.onscrollend = onscrollend;
 
 cli_input.addEventListener("input", cin)
+cli_input.addEventListener("keydown", cinKey)
+cli_send.addEventListener("click", sendCommand)
