@@ -19,8 +19,9 @@
     --color-bg: rgb(0, 0, 0);
     --color-cmd-text: rgb(0, 255, 0);
 
-    --pointer: url("/src/icons/pointer.png");
-    --cursor: url("/src/icons/cursor.png");
+    --pointer: url("/src/cursors/pointer.png");
+    --cursor: url("/src/cursors/cursor.png");
+    --text: url("/src/cursors/text.png");
 }
 
 
@@ -73,6 +74,10 @@ canvas {
 
 a {
     cursor: var(--pointer), pointer;
+}
+
+input[type="text"] {
+    cursor: var(--text), text;
 }
 
 
@@ -659,6 +664,7 @@ nav > div > input {
     border: 1px solid var(--color-text);
     background-color: var(--color-bg);
     color: var(--color-cmd-text);
+    cursor: var(--text), text;
 }
 
 nav > div > input:focus-visible {
