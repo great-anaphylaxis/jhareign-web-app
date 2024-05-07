@@ -145,6 +145,8 @@ let help_res = {
     }
 }
 
+
+
 // website "system" functions
 function threeScroll(min, max, func) {
     if (min == "start") {
@@ -200,6 +202,7 @@ function scrollbarRestorer() {
         }
     }
 }
+
 
 
 // functions for use
@@ -544,8 +547,10 @@ export function msg(line) {
     command_line.appendChild(p);
 }
 
-// cli related functions
 
+
+
+// cli related functions
 function toggleCLI() {
     history.replaceState("", document.title, window.location.pathname
     + window.location.search)
@@ -712,6 +717,9 @@ function scrollToMonitor() {
     }
 }
 
+
+
+
 // cli commands
 function command_404() {
     cout("Command not found!");
@@ -835,6 +843,10 @@ function command_color(args) {
     cout(" ");
 }
 
+
+
+
+
 // event functions
 function onscrolloptimize() {
     if (!ticking) {
@@ -894,6 +906,9 @@ function onscrollend() {
     }
 }
 
+
+
+
 // very important functions
 function onscroll() {
     TWEEN.update();
@@ -916,9 +931,9 @@ function onscroll() {
             changeMonitorText(initial_cli_text, "initial")
         }
 
-        tweenScroll(s, 22, 22, camera.position.x, e => camera.position.x = e.val)
+        tweenScroll(s, 22, 22.3, camera.position.x, e => camera.position.x = e.val)
         tweenScroll(s, 38, 38, camera.position.y, e => camera.position.y = e.val)
-        tweenScroll(s, 25, 20, camera.position.z, e => camera.position.z = e.val)
+        tweenScroll(s, 25, 17.75, camera.position.z, e => camera.position.z = e.val)
         tweenScroll(s, 0, 0, camera.rotation.x, e => camera.rotation.x = e.val)
         tweenScroll(s, 0, 0, camera.rotation.y, e => camera.rotation.y = e.val)
         tweenScroll(s, 0, 0, camera.rotation.z, e => camera.rotation.z = e.val)
@@ -926,9 +941,9 @@ function onscroll() {
 
     // rotate to person
     threeScroll(3000, 3500, (s) => {
-        tweenScroll(s, 22, -32, camera.position.x, e => camera.position.x = e.val)
+        tweenScroll(s, 22.3, -32, camera.position.x, e => camera.position.x = e.val)
         tweenScroll(s, 38, 47, camera.position.y, e => camera.position.y = e.val)
-        tweenScroll(s, 20, -50, camera.position.z, e => camera.position.z = e.val)
+        tweenScroll(s, 17.75, -50, camera.position.z, e => camera.position.z = e.val)
         tweenScroll(s, 0, 0, camera.rotation.x, e => camera.rotation.x = e.val)
         tweenScroll(s, 0, -2.8, camera.rotation.y, e => camera.rotation.y = e.val)
         tweenScroll(s, 0, 0, camera.rotation.z, e => camera.rotation.z = e.val)
