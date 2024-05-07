@@ -96,7 +96,7 @@ let cli_image_active = "/src/icons/command-line-active.webp";
 
 // cli text
 let cli_user = "C:\\User>"
-let initial_cli_text = "Welcome! Type help for commands\n\n" + cli_user;
+let initial_cli_text = "Welcome! Type help for commands\n\n" + cli_user + "ǀ";
 let cli_text = ["Welcome! Type help for commands", "", cli_user];
 let cli_activeline = 2;
 let cli_linelength = 44;
@@ -540,6 +540,10 @@ function showCLI() {
 }
 
 function sendCommand() {
+    if (cli_hasSend == false) {
+        caretBlink()
+    }
+
     cli_input.value = "";
 
     cli_hasSend = true;
@@ -548,10 +552,14 @@ function sendCommand() {
 }
 
 function cin() {
+    if (cli_hasSend == false) {
+        caretBlink()
+    }
+
     cli_hasSend = true;
 
-    cli_text[cli_activeline] = cli_user + cli_input.value.trim();
-    updateCLI()
+    cli_text[cli_activeline] = cli_user + cli_input.value.trim() + "ǀ";
+    updateCLI();
 }
 
 function cinKey(e) {
@@ -584,6 +592,7 @@ function updateCLI(command=false) {
 
     if (command) {
         cli_text = new_cli;
+        cli_text[cli_activeline] = cli_text[cli_activeline].replace("ǀ ", "")
         cli_activeline = cli_text.length - 1;
     }
 
@@ -600,6 +609,20 @@ function chunkString(str, size) {
     }
   
     return chunks
+}
+
+function caretBlink() {
+    setInterval(() => {
+        cli_text[cli_activeline] = cli_user + cli_input.value.trim() + "ǀ";
+        updateCLI();
+    
+        setTimeout(() => {
+            cli_text[cli_activeline] = cli_user + cli_input.value.trim();
+            updateCLI();
+        }, 750);
+    }, 1500);
+
+
 }
 
 
