@@ -96,7 +96,8 @@ let cli_image_active = "/src/icons/command-line-active.webp";
 
 // cli text
 let cli_user = "C:\\User>"
-let initial_cli_text = "Welcome! Type help for commands\n\n" + cli_user + "ǀ";
+let cli_caret = "█";
+let initial_cli_text = "Welcome! Type help for commands\n\n" + cli_user;
 let cli_text = ["Welcome! Type help for commands", "", cli_user];
 let cli_activeline = 2;
 let cli_linelength = 44;
@@ -307,6 +308,7 @@ function changeMonitorText(text, contentTag) {
     for (let i = 0; i < arrtext.length; i++) {
         monitor.fillText(arrtext[i], 10, 15 + (i * 20))
     }
+
     monitorMaterial.map.needsUpdate = true;
     monitorContentTag = contentTag
 }
@@ -540,25 +542,25 @@ function showCLI() {
 }
 
 function sendCommand() {
-    if (cli_hasSend == false) {
-        caretBlink()
-    }
-
     cli_input.value = "";
 
     cli_hasSend = true;
-    cli_text.push(cli_user);
+    cli_text.push(cli_user + cli_caret);
     updateCLI(true);
 }
 
 function cin() {
-    if (cli_hasSend == false) {
-        caretBlink()
-    }
-
+    let caretPos = cli_input.selectionStart;
     cli_hasSend = true;
 
-    cli_text[cli_activeline] = cli_user + cli_input.value.trim() + "ǀ";
+    if (caretPos == cli_input.value.length) {
+        cli_text[cli_activeline] = cli_user + cli_input.value.trim() + cli_caret;
+    }
+
+    else {
+        cli_text[cli_activeline] = setCharAt(cli_user + cli_input.value.trim(), cli_user.length + caretPos, cli_caret);
+    }
+
     updateCLI();
 }
 
@@ -592,7 +594,7 @@ function updateCLI(command=false) {
 
     if (command) {
         cli_text = new_cli;
-        cli_text[cli_activeline] = cli_text[cli_activeline].replace("ǀ ", "")
+        cli_text[cli_activeline] = cli_text[cli_activeline].replace(cli_caret, "")
         cli_activeline = cli_text.length - 1;
     }
 
@@ -611,20 +613,10 @@ function chunkString(str, size) {
     return chunks
 }
 
-function caretBlink() {
-    setInterval(() => {
-        cli_text[cli_activeline] = cli_user + cli_input.value.trim() + "ǀ";
-        updateCLI();
-    
-        setTimeout(() => {
-            cli_text[cli_activeline] = cli_user + cli_input.value.trim();
-            updateCLI();
-        }, 750);
-    }, 1500);
-
-
+function setCharAt(str, index, chr) {
+    if(index > str.length-1) return str;
+    return str.substring(0,index) + chr + str.substring(index+1);
 }
-
 
 // event functions
 function onscrolloptimize() {
@@ -923,4 +915,5 @@ window.onscrollend = onscrollend;
 
 cli_input.addEventListener("input", cin)
 cli_input.addEventListener("keydown", cinKey)
+cli_input.addEventListener("keyup", cin)
 cli_send.addEventListener("click", sendCommand)
