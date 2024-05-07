@@ -654,6 +654,10 @@ nav > div > input:focus-visible {
     outline: none;
 }
 
+nav > div > input::placeholder {
+    color: var(--color-very-light-bg);
+}
+
 nav > div > button {
     background-color: var(--color-bg);
     color: var(--color-cmd-text);

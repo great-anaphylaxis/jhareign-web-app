@@ -85,7 +85,8 @@ let command_line = document.querySelector("[data-main-name='command-line']")
 // CLI
 let cli = document.querySelector("nav > div");
 let cli_input = document.querySelector("nav > div > input");
-let cli_send = document.querySelector("nav > div > button");
+let cli_send = document.querySelector("nav > div > button[data-type='send']");
+let cli_scroll = document.querySelector("nav > div > button[data-type='scroll']");
 let cli_hasSend = false;
 let isCLIActive = false;
 
@@ -107,8 +108,8 @@ let cli_backgroundcolor = "black";
 
 // available command line colors
 let available_colors = [
-    "red", "orange", "yellow", "green", "blue", "violet", "white",
-    "darkred", "darkorange", "brown", "darkgreen", "darkblue", "darkviolet", "black"
+    "red", "orange", "yellow", "green", 
+    "blue", "violet", "white", "black"
 ]
 
 // help command responses
@@ -130,13 +131,10 @@ let help_res = {
         syntax: "color [text] [background]",
         additional_description: [
             "Available colors:",
-            "red            darkred",
-            "orange         darkorange",
-            "yellow         brown",
-            "green          darkgreen",
-            "blue           darkblue",
-            "violet         darkviolet",
-            "white          black",
+            "red            blue",
+            "orange         violet",
+            "yellow         white",
+            "green          black",
             " ",
             "Two same colors will not be displayed"
         ],
@@ -577,9 +575,7 @@ function hideCLI(unanimate=false) {
 }
 
 function showCLI() {
-    if (t < 2525 || t > 2990) {
-        scrollToPosition(2950, true);
-    }
+    scrollToMonitor();
     
     cli_image.src = cli_image_active;
     cli_image.style.filter = "none";
@@ -598,12 +594,16 @@ function sendCommand() {
         command_help(args)
     }
 
-    if (command == "cls") {
+    else if (command == "cls") {
         command_cls(args)
     }
 
-    if (command == "color") {
+    else if (command == "color") {
         command_color(args)
+    }
+
+    else if (command.length != 0) {
+        command_404();
     }
 
     else {
@@ -628,22 +628,9 @@ function cin() {
 }
 
 function cinKey(e) {
-    if (!isCLIActive) {
-        return false;
-    }
-
     if (e.key == "Enter") {
         sendCommand()
         return
-    }
-
-    if (e.target.tagName == "INPUT") {
-        return
-    }
-
-    if (isCharacterKeyPress(e)) {
-        cli_input.value += e.key;
-        cin()
     }
 }
 
@@ -709,15 +696,9 @@ function getCommandParts(val) {
     return [command, args];
 }
 
-function isCharacterKeyPress(evt) {
-    if (typeof evt.which == "undefined") {
-        return true;
-    } 
-    
-    else if (typeof evt.which == "number" && evt.which > 0) {
-        return !evt.ctrlKey && !evt.metaKey && !evt.altKey && evt.which != 8;
-    }
-    return false;
+function updateCLIInputStyle() {
+    cli_input.style.color = cli_color;
+    cli_input.style.backgroundColor = cli_backgroundcolor;
 }
 
 function cout(message) {
@@ -725,7 +706,19 @@ function cout(message) {
     updateCLI(true)
 }
 
+function scrollToMonitor() {
+    if (t < 2525 || t > 2990) {
+        scrollToPosition(2950, true);
+    }
+}
+
 // cli commands
+function command_404() {
+    cout("Command not found!");
+    cout(" ");
+    cout(" ");
+}
+
 function command_help(args) {
     cout(" ");
 
@@ -767,6 +760,7 @@ function command_help(args) {
 
         
         cout(" ");
+        cout(" ");
     }
 
 }
@@ -799,17 +793,24 @@ function command_color(args) {
 
     if (available_colors.includes(args[0])) {
         cli_color = args[0];
+        updateCLIInputStyle()
     }
 
     else {
-        cout("Unknown color");
+        let colors = help_res.color.additional_description;
+
+        cout(" ")
+        for (let i = 0; i < colors.length; i++) {
+            cout(colors[i])
+        }
         cout(" ");
         cout(" ");
         return;
     }
 
     if (args.length > 1 && available_colors.includes(args[1])) {
-        cli_backgroundcolor = args[1]
+        cli_backgroundcolor = args[1];
+        updateCLIInputStyle()
     }
 
     else if (args.length == 1) {
@@ -819,7 +820,12 @@ function command_color(args) {
     }
 
     else {
-        cout("Unknown color");
+        let colors = help_res.color.additional_description;
+
+        cout(" ")
+        for (let i = 0; i < colors.length; i++) {
+            cout(colors[i])
+        }
         cout(" ");
         cout(" ");
         return;
@@ -1123,8 +1129,9 @@ window.onload = onload;
 window.onresize = onresize;
 window.onhashchange = setScrollAccordingToHash;
 window.onscrollend = onscrollend;
-window.onkeydown = cinKey;
 
 cli_input.addEventListener("input", cin)
 cli_input.addEventListener("keyup", cin)
+cli_input.addEventListener("keydown", cinKey)
 cli_send.addEventListener("click", sendCommand)
+cli_scroll.addEventListener("click", scrollToMonitor)
