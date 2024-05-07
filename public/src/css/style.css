@@ -376,6 +376,10 @@ input[type="text"] {
     background-color: var(--color-light-bg);
 }
 
+.cards > a:active {
+    background-color: var(--color-very-light-bg);
+}
+
 .cards > a:hover .card > img {
     background-color: var(--color-very-light-bg);
 }
@@ -626,6 +630,10 @@ nav > a:hover {
     background-color: var(--color-light-bg)
 }
 
+nav > a:active {
+    background-color: var(--color-very-light-bg);
+}
+
 nav > a.right {
     margin-left: auto;
     border-right: none;
@@ -688,6 +696,10 @@ nav > div > button {
 
 nav > div > button:hover {
     background-color: var(--color-light-bg);
+}
+
+nav > div > button:active {
+    background-color: var(--color-very-light-bg);
 }
 
 
