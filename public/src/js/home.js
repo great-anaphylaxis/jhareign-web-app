@@ -98,6 +98,9 @@ let cli_image_active = "/src/icons/command-line-active.webp";
 let cli_user = "C:\\User>"
 let initial_cli_text = "Welcome! Type help for commands\n\n" + cli_user;
 let cli_text = ["Welcome! Type help for commands", "", cli_user];
+let cli_activeline = 2;
+let cli_linelength = 44;
+let cli_length = 24;
 
 // website "system" functions
 function threeScroll(min, max, func) {
@@ -541,25 +544,62 @@ function sendCommand() {
 
     cli_hasSend = true;
     cli_text.push(cli_user);
-    updateCLI();
+    updateCLI(true);
 }
 
 function cin() {
     cli_hasSend = true;
 
-    cli_text[cli_text.length - 1] = cli_user + cli_input.value.trim();
+    cli_text[cli_activeline] = cli_user + cli_input.value.trim();
     updateCLI()
 }
 
 function cinKey(e) {
-    if (e.key == "Enter" && cli_input.value.trim().length > 0) {
+    if (e.key == "Enter") {
         sendCommand()
     }
 }
 
-function updateCLI() {
-    let linemessage = cli_text.join('\n');
+function updateCLI(command=false) {
+    let new_cli = [];
+
+    for (let i = 0; i < cli_text.length; i++) {
+        let line = cli_text[i];
+
+        if (line.length > cli_linelength) {
+            let chunks = chunkString(line, cli_linelength);
+            new_cli.push(...chunks)
+        }
+
+        else {
+            new_cli.push(line);
+        }
+    }
+
+    if (new_cli.length > cli_length) {
+        let diff = new_cli.length - cli_length;
+
+        new_cli = new_cli.slice(diff)
+    }
+
+    if (command) {
+        cli_text = new_cli;
+        cli_activeline = cli_text.length - 1;
+    }
+
+    let linemessage = new_cli.join('\n');
     changeMonitorText(linemessage, "cli");
+}
+
+function chunkString(str, size) {
+    const numChunks = Math.ceil(str.length / size)
+    const chunks = new Array(numChunks)
+  
+    for (let i = 0, o = 0; i < numChunks; ++i, o += size) {
+      chunks[i] = str.substr(o, size)
+    }
+  
+    return chunks
 }
 
 
